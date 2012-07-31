@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import com.webagesolutions.xmlparser.dom.DOMNodeCount;
+import com.webagesolutions.xmlparser.sax.SAXNodeCount;
+
 public class MDExample
 {
   public MessageDigest curAlgorithm;

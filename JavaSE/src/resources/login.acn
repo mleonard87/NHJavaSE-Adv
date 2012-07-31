@@ -1,0 +1,6 @@
+Login {
+	com.webagesolutions.users.UserLoginModule required;
+};
+
+
+// com.sun.security.auth.module.NTLoginModule required;

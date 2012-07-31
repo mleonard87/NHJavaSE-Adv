@@ -1,0 +1,13 @@
+package com.webagesolutions.security;
+
+import javax.security.auth.login.LoginContext;
+
+import com.sun.security.auth.callback.DialogCallbackHandler;
+
+public class Login
+{
+  public static void main(String[] args)
+  {
+    LoginContext lc = new LoginContext("Login", new DialogCallbackHandler());
+  }
+}

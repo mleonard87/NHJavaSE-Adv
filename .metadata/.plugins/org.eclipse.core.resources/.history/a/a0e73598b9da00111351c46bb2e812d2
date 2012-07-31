@@ -28,8 +28,8 @@ public class MDExample
     ByteArrayOutputStream buffer = null;
     
     try {
-      in = new FileInputStream(fileName);
-      buffer = new ByteArrayOutputStream();
+      FileInputStream in = new FileInputStream(fileName);
+      ByteArrayOutputStream buffer = new ByteArrayOutputStream();
       int tmp;
       while((tmp = in.read()) != -1) {
         buffer.write(tmp);
