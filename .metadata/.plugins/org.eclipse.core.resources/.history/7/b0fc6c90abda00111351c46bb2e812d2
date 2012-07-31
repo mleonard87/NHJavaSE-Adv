@@ -1,0 +1,35 @@
+package com.webagesolutions.rmi;
+
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
+import com.webagesolutions.users.RemoteUserStore;
+import com.webagesolutions.users.User;
+import com.webagesolutions.users.UserAddException;
+import com.webagesolutions.users.UserStore;
+
+public class RemoteUserStoreService extends UnicastRemoteObject implements RemoteUserStore
+{
+  UserStore userStore = new InMemoryUserStore();
+  
+  @Override
+  public User getUser(String email) throws RemoteException
+  {
+    return userStore.getUser(email);
+  }
+  
+  @Override
+  public void putUser(User aUser, String verifyPassword)
+      throws UserAddException, RemoteException
+  {
+    userStore.putUser(aUser, verifyPassword);    
+  }
+  
+  @Override
+  public Iterable<User> listAllUsers() throws RemoteException
+  {
+    return userStore.listAllUsers();
+  }
+  
+  
+}

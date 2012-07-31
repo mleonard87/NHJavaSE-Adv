@@ -1,0 +1,13 @@
+package com.webagesolutions.rmi;
+
+import java.rmi.server.UnicastRemoteObject;
+
+import com.webagesolutions.users.RemoteUserStore;
+import com.webagesolutions.users.UserStore;
+
+public class RemoteUserStoreService extends UnicastRemoteObject implements RemoteUserStore
+{
+  UserStore userStore = new InMemoryUserStore();
+  
+  get
+}

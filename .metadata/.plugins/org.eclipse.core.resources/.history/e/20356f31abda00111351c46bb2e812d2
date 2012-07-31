@@ -1,0 +1,8 @@
+package com.webagesolutions.rmi;
+
+import java.rmi.server.UnicastRemoteObject;
+
+public class RemoteUserStoreService extends UnicastRemoteObject
+{
+
+}
