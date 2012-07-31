@@ -1,0 +1,15 @@
+package com.webagesolutions.sax;
+
+import org.xml.sax.helpers.XMLReaderFactory;
+
+public class XMLReaderNodeCount
+{
+  public static final String PARSER_NAME = "org.apache.crimson.parser.XMLReaderImpl";
+  
+  public static void main(String[] args)
+  {
+    XMLReader parser = XMLReaderFactory.createXMLReader(PARSER_NAME);
+  }
+  
+  
+}

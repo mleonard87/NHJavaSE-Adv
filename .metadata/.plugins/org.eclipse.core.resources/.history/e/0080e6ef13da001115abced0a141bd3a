@@ -1,0 +1,12 @@
+package com.websolutions;
+
+import com.webagesolutions.dom.DOMNodeCount;
+
+public class NodeCountRunner
+{
+  public static void main(String[] args)
+  {
+    new DOMNodeCount(args[0]);
+    new DOMNodeCount(args[1]);
+  }
+}

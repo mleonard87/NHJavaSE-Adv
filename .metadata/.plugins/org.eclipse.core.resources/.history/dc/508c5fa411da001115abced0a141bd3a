@@ -1,0 +1,18 @@
+package com.webagesolutions.dom;
+
+import java.io.File;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+
+public class DOMNodeCount
+{
+  public static void main(String[] args)
+  {
+    String fileName = args[0];
+    DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+    Document doc = builder.parse(new File(fileName));
+  }
+}

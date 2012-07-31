@@ -1,0 +1,63 @@
+package com.webagesolutions.dom;
+
+import java.io.File;
+import java.io.IOException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.xml.sax.SAXException;
+
+public class DOMNodeCount
+{
+  long startTime, endTime;
+  
+  public static void main(String[] args)
+  {
+    new DOMNodeCount(args[0]);
+  }
+  
+  public DOMNodeCount(String fileName)
+  {
+    System.out.println("DOM: " + fileName);
+    startTime = System.currentTimeMillis();
+    try {
+      DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+      Document doc = builder.parse(new File(fileName));
+      
+      Node docNode = doc.getDocumentElement();
+      int count = countElements(docNode);
+      
+      System.out.printf("This document contains %d elements.\n", count);
+      endTime = System.currentTimeMillis();
+      System.out.printf("Elapsed time: %dms \n", endTime - startTime);
+    } catch (ParserConfigurationException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (SAXException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+  }
+  
+  public static int countElements(Node docNode)
+  {
+    if (docNode.getNodeType() != Node.ELEMENT_NODE) {
+      return 0;
+    }
+    
+    int totalCount = 1;
+    
+    for (int i = 0; i < docNode.getChildNodes().getLength(); i++) {
+      totalCount += countElements(docNode.getChildNodes().item(i)); 
+    }
+    
+    return totalCount;
+  }
+}

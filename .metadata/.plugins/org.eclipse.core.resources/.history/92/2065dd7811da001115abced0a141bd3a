@@ -1,0 +1,9 @@
+package com.webagesolutions.sax;
+
+public class DOMNodeCount
+{
+  public static void main(String[] args)
+  {
+    
+  }
+}

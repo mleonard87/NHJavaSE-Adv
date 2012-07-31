@@ -1,0 +1,18 @@
+package com.webagesolutions.sax;
+
+import java.io.File;
+
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+public class SAXNodeCount
+{
+  public static void main(String[] args)
+  {
+    SAXNodeCount saxCount = new SAXNodeCount();
+    String fileName = args[0];
+    
+    SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
+    parser.parse(new File(fileName), saxCount.new DocHandler());
+  }
+}

@@ -1,0 +1,131 @@
+!SESSION 2012-07-30 12:12:53.441 -----------------------------------------------
+eclipse.buildId=M20110210-1200
+java.version=1.6.0_10
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_AU
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2012-07-31 10:05:08.997
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2012-07-31 10:05:08.997
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:05:08.997
+!MESSAGE Software being installed: Eclipse JGit Command Line Interface 2.0.0.201206130900-r (org.eclipse.jgit.pgm.feature.group 2.0.0.201206130900-r)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:05:08.997
+!MESSAGE Missing requirement: Eclipse JGit Command Line Interface 2.0.0.201206130900-r (org.eclipse.jgit.pgm.feature.group 2.0.0.201206130900-r) requires 'org.kohsuke.args4j [2.0.0,3.0.0)' but it could not be found
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2012-07-31 10:05:08.997
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2012-07-31 10:05:08.997
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:05:08.997
+!MESSAGE Software being installed: Eclipse JGit Command Line Interface 2.0.0.201206130900-r (org.eclipse.jgit.pgm.feature.group 2.0.0.201206130900-r)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:05:08.997
+!MESSAGE Missing requirement: Eclipse JGit Command Line Interface 2.0.0.201206130900-r (org.eclipse.jgit.pgm.feature.group 2.0.0.201206130900-r) requires 'org.kohsuke.args4j [2.0.0,3.0.0)' but it could not be found
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2012-07-31 10:06:05.418
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2012-07-31 10:06:05.418
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:06:05.418
+!MESSAGE Software being installed: Eclipse JGit Command Line Interface 2.0.0.201206130900-r (org.eclipse.jgit.pgm.feature.group 2.0.0.201206130900-r)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:06:05.418
+!MESSAGE Missing requirement: Eclipse JGit Command Line Interface 2.0.0.201206130900-r (org.eclipse.jgit.pgm.feature.group 2.0.0.201206130900-r) requires 'org.kohsuke.args4j [2.0.0,3.0.0)' but it could not be found
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2012-07-31 10:06:05.418
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2012-07-31 10:06:05.418
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:06:05.418
+!MESSAGE Software being installed: Eclipse JGit Command Line Interface 2.0.0.201206130900-r (org.eclipse.jgit.pgm.feature.group 2.0.0.201206130900-r)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:06:05.418
+!MESSAGE Missing requirement: Eclipse JGit Command Line Interface 2.0.0.201206130900-r (org.eclipse.jgit.pgm.feature.group 2.0.0.201206130900-r) requires 'org.kohsuke.args4j [2.0.0,3.0.0)' but it could not be found
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2012-07-31 10:07:52.222
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2012-07-31 10:07:52.222
+!MESSAGE Cannot complete the install because of a conflicting dependency.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:07:52.222
+!MESSAGE Software being installed: EGit Import Support 2.0.0.201206130900-r (org.eclipse.egit.import.feature.group 2.0.0.201206130900-r)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:07:52.222
+!MESSAGE Software currently installed: Eclipse IDE for Java EE Developers 1.3.2.20110218-0812 (epp.package.jee 1.3.2.20110218-0812)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2012-07-31 10:07:52.222
+!MESSAGE Only one of the following can be installed at once: 
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:07:52.222
+!MESSAGE Team Support Core 3.6.100.v20120524-0627 (org.eclipse.team.core 3.6.100.v20120524-0627)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:07:52.222
+!MESSAGE Team Support Core 3.5.101.R36x_v20110203-1036 (org.eclipse.team.core 3.5.101.R36x_v20110203-1036)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2012-07-31 10:07:52.222
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:07:52.222
+!MESSAGE From: Eclipse IDE for Java EE Developers 1.3.2.20110218-0812 (epp.package.jee 1.3.2.20110218-0812)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:07:52.222
+!MESSAGE To: org.eclipse.epp.package.jee.feature.feature.group [1.3.2.20110218-0812]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2012-07-31 10:07:52.222
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:07:52.222
+!MESSAGE From: EGit Import Support 2.0.0.201206130900-r (org.eclipse.egit.import.feature.group 2.0.0.201206130900-r)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:07:52.222
+!MESSAGE To: org.eclipse.team.core 3.6.100
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2012-07-31 10:07:52.222
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:07:52.222
+!MESSAGE From: Java EE IDE Feature 1.3.2.20110218-0812 (org.eclipse.epp.package.jee.feature.feature.group 1.3.2.20110218-0812)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:07:52.222
+!MESSAGE To: org.eclipse.platform.feature.group [3.6.2.r362_v20110210-9gF78Gs1FrIGnHDHWkEcopoN8AmxeZflGDGKQi]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2012-07-31 10:07:52.222
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:07:52.222
+!MESSAGE From: Eclipse Platform 3.6.2.r362_v20110210-9gF78Gs1FrIGnHDHWkEcopoN8AmxeZflGDGKQi (org.eclipse.platform.feature.group 3.6.2.r362_v20110210-9gF78Gs1FrIGnHDHWkEcopoN8AmxeZflGDGKQi)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:07:52.222
+!MESSAGE To: org.eclipse.team.core [3.5.101.R36x_v20110203-1036]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2012-07-31 10:07:52.222
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2012-07-31 10:07:52.222
+!MESSAGE Cannot complete the install because of a conflicting dependency.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:07:52.222
+!MESSAGE Software being installed: EGit Import Support 2.0.0.201206130900-r (org.eclipse.egit.import.feature.group 2.0.0.201206130900-r)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:07:52.222
+!MESSAGE Software currently installed: Eclipse IDE for Java EE Developers 1.3.2.20110218-0812 (epp.package.jee 1.3.2.20110218-0812)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2012-07-31 10:07:52.222
+!MESSAGE Only one of the following can be installed at once: 
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:07:52.222
+!MESSAGE Team Support Core 3.6.100.v20120524-0627 (org.eclipse.team.core 3.6.100.v20120524-0627)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:07:52.222
+!MESSAGE Team Support Core 3.5.101.R36x_v20110203-1036 (org.eclipse.team.core 3.5.101.R36x_v20110203-1036)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2012-07-31 10:07:52.222
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:07:52.222
+!MESSAGE From: Eclipse IDE for Java EE Developers 1.3.2.20110218-0812 (epp.package.jee 1.3.2.20110218-0812)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:07:52.222
+!MESSAGE To: org.eclipse.epp.package.jee.feature.feature.group [1.3.2.20110218-0812]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2012-07-31 10:07:52.222
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:07:52.222
+!MESSAGE From: EGit Import Support 2.0.0.201206130900-r (org.eclipse.egit.import.feature.group 2.0.0.201206130900-r)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:07:52.222
+!MESSAGE To: org.eclipse.team.core 3.6.100
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2012-07-31 10:07:52.222
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:07:52.222
+!MESSAGE From: Java EE IDE Feature 1.3.2.20110218-0812 (org.eclipse.epp.package.jee.feature.feature.group 1.3.2.20110218-0812)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:07:52.222
+!MESSAGE To: org.eclipse.platform.feature.group [3.6.2.r362_v20110210-9gF78Gs1FrIGnHDHWkEcopoN8AmxeZflGDGKQi]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2012-07-31 10:07:52.222
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:07:52.222
+!MESSAGE From: Eclipse Platform 3.6.2.r362_v20110210-9gF78Gs1FrIGnHDHWkEcopoN8AmxeZflGDGKQi (org.eclipse.platform.feature.group 3.6.2.r362_v20110210-9gF78Gs1FrIGnHDHWkEcopoN8AmxeZflGDGKQi)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2012-07-31 10:07:52.222
+!MESSAGE To: org.eclipse.team.core [3.5.101.R36x_v20110203-1036]
+!SESSION 2012-07-31 10:13:00.695 -----------------------------------------------
+eclipse.buildId=M20110210-1200
+java.version=1.6.0_10
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_AU
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.update.configurator 4 0 2012-07-31 10:15:32.434
+!MESSAGE Unable to access file "plugins/org.eclipse.jgit_2.0.0.201206130900-r.jar!META-INF/MANIFEST.MF".
