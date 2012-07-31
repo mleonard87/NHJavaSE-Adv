@@ -1,0 +1,15 @@
+package com.webagesolutions.digest;
+
+public class MDExample
+{
+
+  /**
+   * @param args
+   */
+  public static void main(String[] args)
+  {
+    // TODO Auto-generated method stub
+
+  }
+
+}

@@ -1,0 +1,41 @@
+package com.webagesolutions.digest;
+
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+public class MDExample
+{
+  public MessageDigest curAlgorithm;
+  
+  public MDExample()
+  {
+    super();
+    
+    // Get the filename
+    String fileName = "src\\resources\\clipping.txt";
+    
+    // Set the algorithm
+    try {
+      curAlgorithm = MessageDigest.getInstance("SHA-1");
+    } catch (NoSuchAlgorithmException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    
+    // Load the file
+    FileInputStream in = null;
+    ByteArrayOutputStream buffer = null;
+    
+    in = new FileInputStream(fileName);
+    
+  }
+  
+  public static void main(String[] args)
+  {
+    // TODO Auto-generated method stub
+
+  }
+
+}
