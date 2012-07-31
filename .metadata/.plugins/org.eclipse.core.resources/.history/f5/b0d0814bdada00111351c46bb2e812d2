@@ -1,0 +1,12 @@
+package com.webagesolutions.domain;
+
+public class Money implements Comparable<Money>
+{
+  @Override
+  public int compareTo(Money o)
+  {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+}

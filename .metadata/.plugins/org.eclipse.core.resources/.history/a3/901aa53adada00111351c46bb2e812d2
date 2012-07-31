@@ -1,0 +1,6 @@
+package com.webagesolutions.domain;
+
+public class Money implements Comparable<T>
+{
+
+}

@@ -1,0 +1,14 @@
+package com.webagesolutions.domain;
+
+public class Money implements Comparable<Money>
+{
+  @Override
+  public int compareTo(Money o)
+  {
+    int dollars, cents;
+    String currenySymbol;
+    
+    return 0;
+  }
+
+}
