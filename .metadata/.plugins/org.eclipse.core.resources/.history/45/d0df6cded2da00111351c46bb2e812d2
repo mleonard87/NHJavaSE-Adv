@@ -1,0 +1,6 @@
+package com.webagecolutions.jni;
+
+public class Multiplier
+{
+  public static native in multiply(int a, int b);
+}

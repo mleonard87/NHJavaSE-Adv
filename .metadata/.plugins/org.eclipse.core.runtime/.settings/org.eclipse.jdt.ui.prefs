@@ -1,4 +1,4 @@
-#Tue Jul 31 11:46:04 EST 2012
+#Tue Jul 31 15:50:57 EST 2012
 sourceHoverBackgroundColor=255,255,225
 content_assist_proposals_foreground=0,0,0
 spelling_locale=en_GB
@@ -16,6 +16,7 @@ fontPropagated=true
 org.eclipse.jdt.ui.text.custom_code_templates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates/>
 org.eclipse.jdt.ui.javadoclocations.migrated=true
 proposalOrderMigrated=true
+breadcrumb.org.eclipse.jdt.ui.JavaPerspective=true
 content_assist_proposals_background=255,255,255
 org.eclipse.jdt.ui.formatterprofiles.version=11
 org.eclipse.jdt.internal.ui.navigator.layout=2

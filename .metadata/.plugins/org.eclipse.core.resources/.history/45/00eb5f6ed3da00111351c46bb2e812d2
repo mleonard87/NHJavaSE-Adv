@@ -1,0 +1,9 @@
+package com.webagesolutions.jni;
+
+public class TestMultiplier
+{
+  public static void main(String[] args)
+  {
+    int result = Multiplier.multiply(40, -22);
+  }
+}

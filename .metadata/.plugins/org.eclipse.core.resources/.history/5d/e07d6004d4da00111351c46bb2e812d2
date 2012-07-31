@@ -1,0 +1,12 @@
+package com.webagesolutions.jni;
+
+public class TestMultiplier
+{
+  public static void main(String[] args)
+  {
+    int a = 40;
+    int b = -22;
+    int result = Multiplier.multiply(a, b);
+    System.out.println("" + a + " x " + b + " = " + result);
+  }
+}
