@@ -3,31 +3,42 @@ package com.webagesolutions.domain;
 public class Money implements Comparable<Money>
 {
   int dollars, cents;
-  String currenySymbol;
+  String currencySymbol;
   
   public Money(int dollars, int cents, String currenySymbol)
   {
     this.dollars = dollars;
     this.cents = cents;
-    this.currenySymbol = currenySymbol;
+    this.currencySymbol = currenySymbol;
   }
   
   @Override
-  public int compareTo(Money o)
+  public int compareTo(Money other)
   {
-    return 0;
+    if (!this.currencySymbol.equals(other.currencySymbol)) {
+      String message = "Cannot compare " + this.currencySymbol + " to " + other.currencySymbol + ".";
+      throw new IllegalArgumentException(message);
+    }
+    
+    int difference = (this.dollars * 100 + this.cents) - (other.dollars * 100 + other.cents);
+    return difference;
   }
   
   @Override
   public boolean equals(Object obj)
   {
+    if (obj != null && obj instanceof Money) {
+      Money other = (Money) obj;
+      return this.compareTo(other) == 0;
+    }
+        
     return false;
   }
   
   @Override
   public String toString()
   {
-    String moneyStr = currenySymbol + dollars;
+    String moneyStr = currencySymbol + dollars;
     
     if (cents != 0) {
       moneyStr += "." + ((cents < 10) ? "0" + cents : cents); 

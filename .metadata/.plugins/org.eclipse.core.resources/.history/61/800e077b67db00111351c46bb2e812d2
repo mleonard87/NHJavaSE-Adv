@@ -1,0 +1,41 @@
+package com.webagesolutions.domain;
+
+public class Money implements Comparable<Money>
+{
+  int dollars, cents;
+  String currenySymbol;
+  
+  public Money(int dollars, int cents, String currenySymbol)
+  {
+    this.dollars = dollars;
+    this.cents = cents;
+    this.currenySymbol = currenySymbol;
+  }
+  
+  @Override
+  public int compareTo(Money other)
+  {
+    if (this.currenySymbol)
+    
+    int difference = (this.dollars * 100 + this.cents) - (other.dollars * 100 + other.cents);
+    return difference;
+  }
+  
+  @Override
+  public boolean equals(Object obj)
+  {
+    return false;
+  }
+  
+  @Override
+  public String toString()
+  {
+    String moneyStr = currenySymbol + dollars;
+    
+    if (cents != 0) {
+      moneyStr += "." + ((cents < 10) ? "0" + cents : cents); 
+    }
+    
+    return moneyStr;
+  }
+}
