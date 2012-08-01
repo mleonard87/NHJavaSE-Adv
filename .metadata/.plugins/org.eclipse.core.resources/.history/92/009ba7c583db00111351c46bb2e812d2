@@ -1,0 +1,12 @@
+package com.webagesolutions.records;
+
+import javax.swing.JFrame;
+
+public class VJFrameApp extends JFrame
+{
+  public VJFrameApp()
+  {
+    super("Acme records App");
+    
+  }
+}

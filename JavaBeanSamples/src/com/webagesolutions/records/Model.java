@@ -2,7 +2,7 @@ package com.webagesolutions.records;
 
 public interface Model
 {
-  public void putRecord(BeanRecord beanRecord);
-  public BeanRecord getRecord(String email);
-  public Iterable<BeanRecord> allRecords();
+  public void putRecord(Record beanRecord);
+  public Record getRecord(String email);
+  public Iterable<Record> allRecords();
 }

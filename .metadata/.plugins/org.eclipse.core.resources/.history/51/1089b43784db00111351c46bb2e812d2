@@ -1,0 +1,30 @@
+package com.webagesolutions.records;
+
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+
+public class VJFrameApp extends JFrame
+{
+  private static final long serialVersionUID = 1L;
+  private Controller controller = null;
+  
+  private class Controller implements ActionListener
+  {
+    @Override
+    public void actionPerformed(ActionEvent e)
+    {
+      
+    }
+  }
+  
+  public VJFrameApp()
+  {
+    super("Acme records App");
+    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    this.getContentPane().setLayout(new FlowLayout());
+    controller = new Controller();
+  }
+}

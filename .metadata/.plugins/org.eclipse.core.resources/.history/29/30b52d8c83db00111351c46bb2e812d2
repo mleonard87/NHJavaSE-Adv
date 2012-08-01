@@ -1,0 +1,50 @@
+package com.webagesolutions.records;
+
+import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
+public class App
+{
+  public static void main(String[] args)
+  {
+    BeanRecord r1 = new BeanRecord("dude@acme.com", "Ludwig van Beethoven", "dude", "haydn");
+    BeanRecord r2 = new BeanRecord("coyote@scme.com", "Wilie Coyote", "coyote", "lovebird");
+    BeanRecord r3 = new BeanRecord("runner@scme.com", "Road Runner", "runner", "meepbeep");
+    
+    setLookandFeel();
+    VJPanelBeanRecord panel = new VJPanelBeanRecord();
+    panel.setModel(r1);
+    JFrame frame = new JFrame();
+    frame.setContentPane(panel);
+    frame.pack();
+    frame.setVisible(true);
+    
+    panel = new VJPanelBeanRecord();
+    panel.setModel(r1);
+    frame = new JFrame();
+    frame.setContentPane(panel);
+    frame.pack();
+    frame.setVisible(true);
+    
+  }
+  
+  private static void setLookandFeel(){
+    try {
+      UIManager.setLookAndFeel(
+          UIManager.getSystemLookAndFeelClassName());
+    } catch (ClassNotFoundException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (InstantiationException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (IllegalAccessException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (UnsupportedLookAndFeelException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+  }
+}

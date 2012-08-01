@@ -1,0 +1,24 @@
+package com.webagesolutions.records;
+
+import javax.swing.JFrame;
+import javax.swing.UIManager;
+
+public class App
+{
+  public static void main(String[] args)
+  {
+    BeanRecord r1 = new BeanRecord("dude@acme.com", "Ludwig van Beethoven", "dude", "haydn");
+    BeanRecord r2 = new BeanRecord("coyote@scme.com", "Wilie Coyote", "coyote", "lovebird");
+    BeanRecord r3 = new BeanRecord("runner@scme.com", "Road Runner", "runner", "meepbeep");
+    
+    UIManager.setLookAndFeel(
+        UIManager.getSystemLookAndFeelClassName());
+    
+    VJPanelBeanRecord panel = new VJPanelBeanRecord();
+    panel.setModel(r1);
+    JFrame frame = new JFrame();
+    frame.setContentPane(panel);
+    frame.pack();
+    frame.setVisible(true);
+  }
+}

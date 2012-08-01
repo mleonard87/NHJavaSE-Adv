@@ -1,0 +1,36 @@
+package com.webagesolutions.records;
+
+import java.awt.GridBagLayout;
+import java.beans.Introspector;
+
+import javax.swing.JPanel;
+
+public class VJPanelBeanRecord extends JPanel
+{
+  private static final long serialVersionUID = 1L;
+  
+  private BeanRecord model;
+  
+  public VJPanelBeanRecord()
+  {
+    this.setLayout(new GridBagLayout());
+  }
+  
+  public VJPanelBeanRecord(BeanRecord model)
+  {
+    this();
+    setModel(model);
+  }
+
+  public BeanRecord getModel()
+  {
+    return model;
+  }
+
+  public void setModel(BeanRecord model)
+  {
+    this.model = model;
+    BeanInfo beanInfo = Introspector.getBeanInfo(model.getClass());
+  }
+  
+}

@@ -1,0 +1,8 @@
+package com.webagesolutions.records;
+
+import javax.swing.JPanel;
+
+public class VJPanelBeanRecord extends JPanel
+{
+
+}

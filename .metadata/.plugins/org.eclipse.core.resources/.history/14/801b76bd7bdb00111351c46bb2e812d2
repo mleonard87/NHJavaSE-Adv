@@ -1,0 +1,11 @@
+package com.webagesolutions.records;
+
+import javax.swing.JPanel;
+
+public class VJPanelBeanRecord extends JPanel
+{
+  private static final long serialVersionUID = 1L;
+  
+  private BeanRecord model;
+  
+}

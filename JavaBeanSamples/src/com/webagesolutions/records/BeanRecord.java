@@ -4,7 +4,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 
-public class BeanRecord implements Serializable
+public class BeanRecord implements Serializable, Record
 {
   private static final long serialVersionUID = 1L;
  
@@ -18,21 +18,27 @@ public class BeanRecord implements Serializable
   public BeanRecord()
   {
   }
+  
+  public BeanRecord(Record beanRecord) {
+    this(beanRecord.getEmail(), beanRecord.getName(), beanRecord.getUserId(), beanRecord.getPassword());
+  }
 
   public BeanRecord(String email, String name, String userId, String password)
   {
-    super();
+    this();
     this.email = email;
     this.name = name;
     this.userId = userId;
     this.password = password;
   }
   
+  @Override
   public String getEmail()
   {
     return email;
   }
   
+  @Override
   public void setEmail(String email)
   {
     String oldValue = this.email;
@@ -40,11 +46,13 @@ public class BeanRecord implements Serializable
     changeSupport.firePropertyChange("email", oldValue, this.email);
   }
   
+  @Override
   public String getName()
   {
     return name;
   }
   
+  @Override
   public void setName(String name)
   {
     String oldValue = this.name;
@@ -52,11 +60,13 @@ public class BeanRecord implements Serializable
     changeSupport.firePropertyChange("name", oldValue, this.name);
   }
   
+  @Override
   public String getUserId()
   {
     return userId;
   }
   
+  @Override
   public void setUserId(String userId)
   {
     String oldValue = this.userId;
@@ -64,11 +74,13 @@ public class BeanRecord implements Serializable
     changeSupport.firePropertyChange("userId", oldValue, this.userId);
   }
   
+  @Override
   public String getPassword()
   {
     return password;
   }
   
+  @Override
   public void setPassword(String password)
   {
     String oldValue = this.password;

@@ -1,0 +1,8 @@
+package com.webagesolutions.records;
+
+public interface Model
+{
+  public void putRecord(BeanRecord beanRecord);
+  public Record getRecord(String email);
+  public Iterable<BeanRecord> allRecords();
+}

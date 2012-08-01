@@ -1,0 +1,49 @@
+package com.webagesolutions.records;
+
+import java.awt.GridBagLayout;
+import java.beans.BeanInfo;
+import java.beans.IntrospectionException;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
+
+import javax.swing.JPanel;
+
+public class VJPanelBeanRecord extends JPanel
+{
+  private static final long serialVersionUID = 1L;
+  
+  private BeanRecord model;
+  
+  public VJPanelBeanRecord()
+  {
+    this.setLayout(new GridBagLayout());
+  }
+  
+  public VJPanelBeanRecord(BeanRecord model)
+  {
+    this();
+    setModel(model);
+  }
+
+  public BeanRecord getModel()
+  {
+    return model;
+  }
+
+  public void setModel(BeanRecord model)
+  {
+    try {
+      this.model = model;
+      BeanInfo beanInfo = Introspector.getBeanInfo(model.getClass());
+      for (PropertyDescriptor pd : beanInfo.getPropertyDescriptors()) {
+        if (pd.getPropertyType() == String.class) {
+          String value = pd.getReadMethod().invoke(model, (Object[]) null); 
+        }
+      }
+    } catch (IntrospectionException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+  }
+  
+}
