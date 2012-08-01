@@ -1,0 +1,27 @@
+package com.webagesolutions.records;
+
+public class ModelInMemory implements Model
+{
+
+  @Override
+  public void putRecord(BeanRecord beanRecord)
+  {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public BeanRecord getRecord(String email)
+  {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public Iterable<BeanRecord> allRecords()
+  {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+}

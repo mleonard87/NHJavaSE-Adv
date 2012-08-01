@@ -1,0 +1,25 @@
+package com.webagesolutions.records;
+
+public class ModelInMemory implements Model
+{
+  Map<String, BeanRecord> = new Map<String, BeanRecord>();
+  
+  @Override
+  public void putRecord(BeanRecord beanRecord)
+  {
+    
+  }
+
+  @Override
+  public BeanRecord getRecord(String email)
+  {
+    
+  }
+
+  @Override
+  public Iterable<BeanRecord> allRecords()
+  {
+    
+  }
+
+}

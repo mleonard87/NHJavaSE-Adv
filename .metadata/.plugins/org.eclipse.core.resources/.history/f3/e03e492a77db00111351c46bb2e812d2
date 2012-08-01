@@ -1,0 +1,16 @@
+package com.webagesolutions.records;
+
+public class AppBatch
+{
+  public static void main(String[] args)
+  {
+    BeanRecord r1 = new BeanRecord();
+    Model model = null;
+    model.putRecord(r1);
+    
+    for (BeanRecord r : model.allRecords())
+    {
+      
+    }
+  }
+}

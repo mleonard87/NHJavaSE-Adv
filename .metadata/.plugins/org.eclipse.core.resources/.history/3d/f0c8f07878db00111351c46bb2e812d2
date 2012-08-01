@@ -1,0 +1,18 @@
+package com.webagesolutions.records;
+
+public class AppBatch
+{
+  public static void main(String[] args)
+  {
+    BeanRecord r1 = new BeanRecord("dude@acme.com", "Ludwig ban Beethoven", "haydn", "dude");
+    BeanRecord r2 = new BeanRecord("coyote@scme.com", "Wilie Coyote", "lovebird", "coyote");
+    BeanRecord r3 = new BeanRecord("runner@scme.com", "Road Runner", "meepbeep", "runner");
+    Model model = new ModelInMemory();
+    model.putRecord(r1);
+    
+    for (BeanRecord br : model.allRecords())
+    {
+      System.out.println(br.getName());
+    }
+  }
+}

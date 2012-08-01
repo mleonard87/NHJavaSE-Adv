@@ -1,0 +1,8 @@
+package com.webagesolutions.records;
+
+import java.io.Serializable;
+
+public class BeanRecord implements Serializable
+{
+
+}

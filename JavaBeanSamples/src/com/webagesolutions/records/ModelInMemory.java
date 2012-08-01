@@ -1,0 +1,30 @@
+package com.webagesolutions.records;
+
+import java.util.Map;
+import java.util.TreeMap;
+
+public class ModelInMemory implements Model
+{
+  Map<String, BeanRecord> map = new TreeMap<String, BeanRecord>();
+  
+  @Override
+  public void putRecord(BeanRecord record)
+  {
+    System.out.println("Model save: " + record);
+    map.put(record.getEmail(), record);
+  }
+
+  @Override
+  public BeanRecord getRecord(String email)
+  {
+    BeanRecord record = map.get(email);
+    System.out.println("Model read: " + record);
+    return record;
+  }
+
+  @Override
+  public Iterable<BeanRecord> allRecords()
+  {
+    return map.values();
+  }
+}
