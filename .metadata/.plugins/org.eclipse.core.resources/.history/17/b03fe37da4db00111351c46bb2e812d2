@@ -1,0 +1,21 @@
+package com.webagesolutions.records.jdbc;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Iterator;
+
+import com.webagesolutions.records.Record;
+
+public class ModelJdbcDaxIteratorRecord implements Iterator<Record>
+{
+  private Statement stmt = null;
+  private ResultSet rs = null;
+  
+  public ModelJdbcDaxIteratorRecord(Connection connection)
+  {
+    stmt = connection.createStatement();
+    
+  }
+  
+}

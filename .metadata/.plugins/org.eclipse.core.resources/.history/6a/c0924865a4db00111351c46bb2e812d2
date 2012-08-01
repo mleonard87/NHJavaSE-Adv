@@ -1,0 +1,10 @@
+package com.webagesolutions.records.jdbc;
+
+import java.util.Iterator;
+
+import com.webagesolutions.records.Record;
+
+public class ModelJdbcDaxIteratorRecord implements Iterator<Record>
+{
+
+}

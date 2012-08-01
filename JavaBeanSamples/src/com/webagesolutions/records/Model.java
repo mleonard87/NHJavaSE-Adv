@@ -5,4 +5,5 @@ public interface Model
   public void putRecord(Record beanRecord);
   public Record getRecord(String email);
   public Iterable<Record> allRecords();
+  public void close();
 }

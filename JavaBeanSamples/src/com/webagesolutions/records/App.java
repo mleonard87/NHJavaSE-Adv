@@ -1,7 +1,13 @@
 package com.webagesolutions.records;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+
+import com.webagesolutions.records.jdbc.ModelJdbc;
+import com.webagesolutions.records.jdbc.ModelJdbcDax;
 
 public class App
 {
@@ -13,11 +19,22 @@ public class App
     Record r2 = new BeanRecord("coyote@scme.com", "Wilie Coyote", "coyote", "lovebird");
     Record r3 = new BeanRecord("runner@scme.com", "Road Runner", "runner", "meepbeep");
     
-    ModelInMemory model = new ModelInMemory();
-    new VJFrameApp().setModel(new VMJFrameApp(model, r1));
-    new VJFrameApp().setModel(new VMJFrameApp(model, r2));
-    new VJFrameApp().setModel(new VMJFrameApp(model, r3));
-    new VJFrameApp().setModel(new VMJFrameApp(model, r3));
+    Model model = null;
+    //model = new ModelInMemory();
+    try {
+      Connection connection = ModelJdbcDax.getConnection();
+      model = new ModelJdbc(connection);
+
+      new VJFrameApp().setModel(new VMJFrameApp(model, r1));
+      new VJFrameApp().setModel(new VMJFrameApp(model, r2));
+      new VJFrameApp().setModel(new VMJFrameApp(model, r3));
+      new VJFrameApp().setModel(new VMJFrameApp(model, r3));
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      // GUI must close this connection.
+      // model.close();
+    }
         
   }
   

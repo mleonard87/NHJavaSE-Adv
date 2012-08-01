@@ -1,0 +1,66 @@
+package com.webagesolutions.records.jdbc;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Iterator;
+
+import com.webagesolutions.records.Record;
+
+public class ModelJdbcDaxIteratorRecord implements Iterator<Record>
+{
+  private Statement stmt = null;
+  private ResultSet rs = null;
+  private Record nextResult;
+  
+  public ModelJdbcDaxIteratorRecord(Connection connection)
+  {
+    try {
+      stmt = connection.createStatement();
+      rs = stmt.executeQuery("SELECT * FROM records");
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  @Override
+  public boolean hasNext()
+  {
+    
+  }
+
+  @Override
+  public Record next()
+  {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public void remove()
+  {
+    // TODO Auto-generated method stub
+    
+  }
+  
+  private void advance()
+  {
+    try {
+      if (rs == null) {
+        return;
+      } else if (rs.next()) {
+        this.nextResult = ModelJdbcDax.readRecord(rs);
+      } else {
+        this.nextResult = null;
+        if (stmt != null) {
+          stmt.close();
+        }
+        rs = null;
+      }
+    } catch (SQLException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+  }
+}

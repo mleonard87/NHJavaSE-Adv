@@ -1,0 +1,30 @@
+package com.webagesolutions.records.jdbc;
+
+import java.sql.Connection;
+
+import com.webagesolutions.records.Model;
+import com.webagesolutions.records.Record;
+
+public class ModelJdbc implements Model
+{
+  private Connection connection;
+  
+  @Override
+  public void putRecord(Record beanRecord)
+  {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public Record getRecord(String email)
+  {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public Iterable<Record> allRecords()
+  {
+    throw new UnsupportedOperationException();
+  }
+
+}

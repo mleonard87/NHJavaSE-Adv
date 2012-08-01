@@ -1,0 +1,69 @@
+package com.webagesolutions.records.jdbc;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import com.webagesolutions.records.BeanRecord;
+import com.webagesolutions.records.Record;
+
+public class ModelJdbcDax
+{
+  public static Connection getConnection() throws SQLException
+  {
+    Connection connection = DriverManager
+        .getConnection("jdbc:derby://localhost:1527/c:/records;create=true");
+    System.out
+        .println("Created connection: " + connection.getClass().getName());
+    return connection;
+  }
+
+  public static Record readRecord(Connection connection, String email)
+      throws SQLException
+  {
+    Statement stmt = null;
+    try {
+      stmt = connection.createStatement();
+      ResultSet rs = stmt.executeQuery("SELECT * FROM records WHERE email = '"
+          + email + "'");
+      if (rs.next()) {
+
+      }
+    } catch (Exception e) {
+      // TODO: handle exception
+    }
+  }
+
+  public static Record readRecord(ResultSet rs) throws SQLException
+  {
+    Record record = new BeanRecord(rs.getString("email"), rs.getString("name"),
+        rs.getString("userId"), rs.getString("password"));
+
+  }
+
+  public static void prepareTables(Connection connection) throws SQLException
+  {
+    boolean hasTable = false;
+
+    ResultSet rs = connection.getMetaData().getTables(null, null, null,
+        new String[] { "TABLE" });
+    while (rs.next()) {
+      if ("records".equalsIgnoreCase(rs.getString("TABLE_NAME"))) {
+        System.out.println("Found table \"records\".");
+        hasTable = true;
+        break;
+      }
+    }
+    if (!hasTable) {
+      Statement s = null;
+      try {
+        s = connection.createStatement();
+        s.execute("CREATE TABLE records (email VARCHAR(50), name VARCHAR(50), password VARCHAR(50), userid VARCHAR(50))");
+      } finally {
+        s.close();
+      }
+    }
+  }
+}

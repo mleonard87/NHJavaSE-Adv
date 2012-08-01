@@ -27,4 +27,9 @@ public class ModelInMemory implements Model
   {
     return map.values();
   }
+  
+  @Override
+  public void close()
+  {
+  }
 }

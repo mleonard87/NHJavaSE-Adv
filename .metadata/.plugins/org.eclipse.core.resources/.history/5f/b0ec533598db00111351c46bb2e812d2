@@ -1,0 +1,11 @@
+package com.webagesolutions.records.jdbc;
+
+import com.sun.corba.se.pept.transport.Connection;
+
+public class ModelJdbcDax
+{
+  public static Connection getConnection()
+  {
+    
+  }
+}

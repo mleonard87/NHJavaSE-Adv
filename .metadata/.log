@@ -129,3 +129,13 @@ Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.
 
 !ENTRY org.eclipse.update.configurator 4 0 2012-07-31 10:15:32.434
 !MESSAGE Unable to access file "plugins/org.eclipse.jgit_2.0.0.201206130900-r.jar!META-INF/MANIFEST.MF".
+!SESSION 2012-07-31 10:31:42.839 -----------------------------------------------
+eclipse.buildId=M20110210-1200
+java.version=1.6.0_10
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_AU
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.jdt.ui 2 0 2012-08-01 15:45:35.516
+!MESSAGE The 'org.eclipse.mylyn.java.ui.javaAllCompletionProposalComputer' proposal computer from the 'org.eclipse.mylyn.java.ui' plug-in did not complete normally. The extension took too long to return from the 'computeCompletionProposals()' operation.

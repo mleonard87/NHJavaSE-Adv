@@ -1,0 +1,14 @@
+package com.webagesolutions.records.jdbc;
+
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+import com.sun.corba.se.pept.transport.Connection;
+
+public class ModelJdbcDax
+{
+  public static Connection getConnection() throws SQLException
+  {
+    Connection connection = DriverManager.getConnection("jdbc:derby://localhost:1527/c:/records");
+  }
+}

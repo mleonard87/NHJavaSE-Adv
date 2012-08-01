@@ -1,0 +1,30 @@
+package com.webagesolutions.records.jdbc;
+
+import com.webagesolutions.records.Model;
+import com.webagesolutions.records.Record;
+
+public class ModelJdbc implements Model
+{
+
+  @Override
+  public void putRecord(Record beanRecord)
+  {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public Record getRecord(String email)
+  {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public Iterable<Record> allRecords()
+  {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+}
