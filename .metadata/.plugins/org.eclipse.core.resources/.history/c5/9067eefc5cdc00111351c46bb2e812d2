@@ -1,0 +1,44 @@
+package com.webagesolutions.threads;
+
+import java.util.Random;
+
+public class Worker implements Runnable
+{
+  private String name;
+  private boolean isKilled = false;
+  
+  public Worker(String name)
+  {
+    this.name = name;
+  }
+  
+  @Override
+  public void run()
+  {
+    Random random = new Random();
+    for (int i = 0; i < 10; i++) {
+      int r = random.nextInt(100);
+      if (r > 66) {
+        System.out.println(this.name + " >yeild n:" + i);
+        Thread.yield();
+        System.out.println(this.name + " <yeild n:" + i);
+      } else if (r > 33 ) {
+        try {
+          System.out.println(this.name + " >sleep n:" + i);
+          Thread.sleep(random.nextInt(1000));
+          System.out.println(this.name + " <sleep n:" + i);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+      }  else {
+        System.out.println(this.name + " >work  n:" + i);
+        for (int j = 0; j < 1000000; j++) {
+          Math.pow(42, j);
+        }
+        System.out.println(this.name + " <work  n:" + i);
+      }
+    }
+    System.out.println(this.name + " done!");
+    
+  }
+}

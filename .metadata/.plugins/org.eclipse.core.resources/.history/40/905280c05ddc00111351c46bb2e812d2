@@ -1,0 +1,6 @@
+package com.webagesolutions.threads.daemon;
+
+public class DaemonController
+{
+  private Daemon daemon = new Daemon();
+}
