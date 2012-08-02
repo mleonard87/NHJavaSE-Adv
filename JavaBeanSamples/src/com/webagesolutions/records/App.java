@@ -1,13 +1,8 @@
 package com.webagesolutions.records;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import com.webagesolutions.records.jdbc.ModelJdbc;
-import com.webagesolutions.records.jdbc.ModelJdbcDax;
 import com.webagesolutions.records.jdbc.ModelJdbcManaged;
 
 public class App

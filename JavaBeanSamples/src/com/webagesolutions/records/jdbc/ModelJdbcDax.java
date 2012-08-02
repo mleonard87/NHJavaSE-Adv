@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
+import java.text.MessageFormat;
+import java.util.ResourceBundle;
 
 import javax.sql.PooledConnection;
 
@@ -17,11 +19,15 @@ import com.webagesolutions.records.Record;
 
 public class ModelJdbcDax
 {
+  private static final ResourceBundle bundle = ResourceBundle
+      .getBundle("com.webagesolutions.records.messages");
+
   public static Connection getConnection() throws SQLException
   {
-//    Connection connection = DriverManager
-//        .getConnection("jdbc:derby://localhost:1527/c:/records;create=true");
-    Connection connection = getClientConnectionPoolDataSource40().getConnection();
+    // Connection connection = DriverManager
+    // .getConnection("jdbc:derby://localhost:1527/c:/records;create=true");
+    Connection connection = getClientConnectionPoolDataSource40()
+        .getConnection();
     System.out
         .println("Created connection: " + connection.getClass().getName());
     return connection;
@@ -38,20 +44,23 @@ public class ModelJdbcDax
     dataSource.setPortNumber(1527);
     return dataSource;
   }
-  
+
   public static PooledConnection getPooledConnection() throws SQLException
   {
-    PooledConnection pooledConnection = getClientConnectionPoolDataSource40().getPooledConnection();
-    System.out.println("pooledConnection: " + pooledConnection.getClass().getName());
+    PooledConnection pooledConnection = getClientConnectionPoolDataSource40()
+        .getPooledConnection();
+    System.out.println("pooledConnection: "
+        + pooledConnection.getClass().getName());
     return pooledConnection;
   }
-  
+
   public static Record readRecord(Connection connection, String email)
       throws SQLException
   {
     PreparedStatement stmt = null;
     try {
-      stmt = connection.prepareStatement("SELECT * FROM records WHERE email = ?");
+      stmt = connection
+          .prepareStatement("SELECT * FROM records WHERE email = ?");
       stmt.setString(1, email);
       ResultSet rs = stmt.executeQuery();
       if (rs.next()) {
@@ -64,55 +73,44 @@ public class ModelJdbcDax
         stmt.close();
       }
     }
-    
+
     return null;
   }
-  
-  public static void writeRecord(Connection connection, Record record) throws SQLException
+
+  public static void writeRecord(Connection connection, Record record)
+      throws SQLException
   {
     PreparedStatement stmt1 = null, stmt2 = null;
     try {
       // Try to update the database.
-      
-      String updateString = 
-        "UPDATE records " +
-        "SET name = ? " +
-        ", userid = ? " +
-        ", password = ? " +
-        "WHERE email = ? ";
-      
+
+      String updateString = "UPDATE records " + "SET name = ? "
+          + ", userid = ? " + ", password = ? " + "WHERE email = ? ";
+
       stmt1 = connection.prepareStatement(updateString);
       stmt1.setString(1, record.getName());
       stmt1.setString(2, record.getUserId());
       stmt1.setString(3, record.getPassword());
       stmt1.setString(4, record.getEmail());
-      
+
       System.out.println("Running UPDATE statement: " + updateString);
 
       int count = stmt1.executeUpdate();
-          
+
       if (count == 0) {
-        
-        String insertString = 
-          "INSERT INTO records (" +
-          "  email" +
-          ", name" +
-          ", userid" +
-          ", password" +
-          ") VALUES (" + 
-          " ? " + 
-          ", ? " + 
-          ", ? " + 
-          ", ? )";
-        
+
+        String insertString = "INSERT INTO records (" + "  email" + ", name"
+            + ", userid" + ", password" + ") VALUES (" + " ? " + ", ? "
+            + ", ? " + ", ? )";
+
         stmt2 = connection.prepareStatement(insertString);
         stmt2.setString(1, record.getEmail());
         stmt2.setString(2, record.getName());
         stmt2.setString(3, record.getUserId());
         stmt2.setString(4, record.getPassword());
-        
+
         System.out.println("Running INSERT statement: " + insertString);
-        
+
         stmt2.executeUpdate();
       }
     } finally {
@@ -130,7 +128,7 @@ public class ModelJdbcDax
   {
     Record record = new BeanRecord(rs.getString("email"), rs.getString("name"),
         rs.getString("userId"), rs.getString("password"));
-    
+
     return record;
   }
 
@@ -142,7 +140,10 @@ public class ModelJdbcDax
         new String[] { "TABLE" });
     while (rs.next()) {
       if ("records".equalsIgnoreCase(rs.getString("TABLE_NAME"))) {
-        System.out.println("Found table \"records\".");
+        System.out.println(MessageFormat.format(
+            bundle.getString("ModelJdbcDax.found"), "records"));
+
+        // System.out.println("Found table \"records\".");
         hasTable = true;
         break;
       }
@@ -160,8 +161,9 @@ public class ModelJdbcDax
       }
     }
   }
-  
-  public static boolean login(Connection connection, String userId, String password) throws SQLException
+
+  public static boolean login(Connection connection, String userId,
+      String password) throws SQLException
   {
     CallableStatement cs = null;
     boolean authenticated = false;

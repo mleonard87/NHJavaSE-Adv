@@ -12,6 +12,7 @@ import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -25,6 +26,10 @@ import javax.swing.text.Document;
 public class VJPanelBeanRecord extends JPanel
 {
   private static final long serialVersionUID = 1L;
+  
+  private static final ResourceBundle bundle = ResourceBundle
+  .getBundle("com.webagesolutions.records.messages");
+  
   private Map<String, Document> documents = new HashMap<String, Document>();
   private Map<Document, String> documentNames = new HashMap<Document, String>();
   private BeanRecord model;
@@ -146,7 +151,7 @@ public class VJPanelBeanRecord extends JPanel
           String value = (String) pd.getReadMethod().invoke(model,
               (Object[]) null);
           JTextField t = new JTextField(20);
-          String labelValue = pd.getName() + ": ";
+          String labelValue = bundle.getString("VJPanelBeanRecord." + pd.getName()) + ": ";
           this.add(new JLabel(labelValue), c);
           c.gridx = 1;
           this.add(t, c);

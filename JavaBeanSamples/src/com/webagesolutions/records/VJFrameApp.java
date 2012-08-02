@@ -3,6 +3,7 @@ package com.webagesolutions.records;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -10,13 +11,15 @@ import javax.swing.JFrame;
 public class VJFrameApp extends JFrame
 {
   private static final long serialVersionUID = 1L;
-  
+  private static final ResourceBundle bundle = ResourceBundle
+      .getBundle("com.webagesolutions.records.messages");
+
   private static int x, y;
   private VMJFrameApp viewModel;
   private Controller controller = null;
   private VJPanelBeanRecord recordView;
-  private JButton bGet, bPut;  
-  
+  private JButton bGet, bPut;
+
   private class Controller implements ActionListener
   {
     @Override
@@ -31,16 +34,18 @@ public class VJFrameApp extends JFrame
       }
     }
   }
-  
+
   public VJFrameApp()
   {
-    super("Acme records App");
+    super(bundle.getString("VJFrameApp.title"));
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.getContentPane().setLayout(new FlowLayout());
     this.controller = new Controller();
     this.recordView = new VJPanelBeanRecord();
-    this.bGet = new JButton("get");
-    this.bPut = new JButton("put");
+    this.bGet = new JButton(bundle.getString("VJFrameApp.get"));
+    this.bGet.setActionCommand("get");
+    this.bPut = new JButton(bundle.getString("VJFrameApp.put"));
+    this.bPut.setActionCommand("put");
     this.getContentPane().add(this.recordView);
     this.getContentPane().add(bGet);
     this.getContentPane().add(bPut);
@@ -56,7 +61,7 @@ public class VJFrameApp extends JFrame
     this.pack();
     this.setVisible(true);
   }
-  
+
   public void setModel(VMJFrameApp viewModel)
   {
     this.viewModel = viewModel;

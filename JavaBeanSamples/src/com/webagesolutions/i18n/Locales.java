@@ -30,5 +30,7 @@ public class Locales
       System.out.println("Country: " + def.getDisplayCountry());
       System.out.println("Language: " + def.getDisplayLanguage());
     }
+    
+    System.out.println("file.encoding: " + System.getProperty("file.encoding"));
   }
 }

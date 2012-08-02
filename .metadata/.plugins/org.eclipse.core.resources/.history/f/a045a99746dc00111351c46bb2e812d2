@@ -1,0 +1,8 @@
+VJFrameApp.title=ACME App des Enregistrements
+VJFrameApp.get=Obtenir
+VJFrameApp.put=Mettre
+
+VJPanelBeanRecord.email=Email
+VJPanelBeanRecord.name=Nom
+VJPanelBeanRecord.userId=User ID
+VJPanelBeanRecord.password=Mot de Passe

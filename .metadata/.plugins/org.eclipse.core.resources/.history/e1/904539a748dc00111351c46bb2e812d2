@@ -1,0 +1,8 @@
+VJFrameApp.title=ACME Datensatz-Anwendung
+VJFrameApp.get=Erhalted
+VJFrameApp.put=Setzen
+
+VJPanelBeanRecord.email=Email
+VJPanelBeanRecord.name=Name
+VJPanelBeanRecord.userId=User ID
+VJPanelBeanRecord.password=Kennwort

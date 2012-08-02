@@ -1,0 +1,7 @@
+VJFrameApp.title=ACME Records App
+VJFrameApp.get=Get
+VJFrameApp.put=Put
+VJFrameApp.email=Email
+VJFrameApp.name=Name
+VJFrameApp.userId=User ID
+VJFrameApp.password=Password
