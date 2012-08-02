@@ -8,6 +8,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import com.webagesolutions.records.jdbc.ModelJdbc;
 import com.webagesolutions.records.jdbc.ModelJdbcDax;
+import com.webagesolutions.records.jdbc.ModelJdbcManaged;
 
 public class App
 {
@@ -19,23 +20,29 @@ public class App
     Record r2 = new BeanRecord("coyote@scme.com", "Wilie Coyote", "coyote", "lovebird");
     Record r3 = new BeanRecord("runner@scme.com", "Road Runner", "runner", "meepbeep");
     
-    Model model = null;
-    //model = new ModelInMemory();
-    try {
-      Connection connection = ModelJdbcDax.getConnection();
-      model = new ModelJdbc(connection);
-
-      new VJFrameApp().setModel(new VMJFrameApp(model, r1));
-      new VJFrameApp().setModel(new VMJFrameApp(model, r2));
-      new VJFrameApp().setModel(new VMJFrameApp(model, r3));
-      new VJFrameApp().setModel(new VMJFrameApp(model, r3));
-    } catch (SQLException e) {
-      e.printStackTrace();
-    } finally {
-      // GUI must close this connection.
-      // model.close();
-    }
+//    Model model = null;
+//    //model = new ModelInMemory();
+//    try {
+//      Connection connection = ModelJdbcDax.getConnection();
+//      model = new ModelJdbc(connection);
+//
+//      new VJFrameApp().setModel(new VMJFrameApp(model, r1));
+//      new VJFrameApp().setModel(new VMJFrameApp(model, r2));
+//      new VJFrameApp().setModel(new VMJFrameApp(model, r3));
+//      new VJFrameApp().setModel(new VMJFrameApp(model, r3));
+//    } catch (SQLException e) {
+//      e.printStackTrace();
+//    } finally {
+//      // GUI must close this connection.
+//      // model.close();
+//    }
         
+    
+    ModelJdbcManaged model = new ModelJdbcManaged();
+    new VJFrameApp().setModel(new VMJFrameApp(model, r1));
+    new VJFrameApp().setModel(new VMJFrameApp(model, r2));
+    new VJFrameApp().setModel(new VMJFrameApp(model, r3));
+    new VJFrameApp().setModel(new VMJFrameApp(model, r3));   
   }
   
   private static void setLookandFeel(){

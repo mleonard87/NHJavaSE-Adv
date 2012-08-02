@@ -1,0 +1,18 @@
+package com.webagesolutions.i18n;
+
+import java.util.Locale;
+
+public class Locales
+{
+  public static void main(String[] args)
+  {
+    Locale[] locales = Locale.getAvailableLocales();
+    
+    for (Locale l : locales) {
+      System.out.print(l.getLanguage());
+      if (!"".equals(l.getCountry())) {
+        System.out.print("_" + l.getCountry());
+      }
+    }
+  }
+}

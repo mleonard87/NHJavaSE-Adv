@@ -1,0 +1,135 @@
+package com.webagesolutions.records.jdbc;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import com.webagesolutions.records.BeanRecord;
+import com.webagesolutions.records.Record;
+
+public class ModelJdbcDax
+{
+  public static Connection getConnection() throws SQLException
+  {
+    Connection connection = DriverManager
+        .getConnection("jdbc:derby://localhost:1527/c:/records;create=true");
+    System.out
+        .println("Created connection: " + connection.getClass().getName());
+    return connection;
+  }
+
+  public static Record readRecord(Connection connection, String email)
+      throws SQLException
+  {
+    PreparedStatement stmt = null;
+    try {
+      stmt = connection.prepareStatement("SELECT * FROM records WHERE email = ?");
+      stmt.setString(1, email);
+      ResultSet rs = stmt.executeQuery();
+      if (rs.next()) {
+        Record record = readRecord(rs);
+        System.out.println("JDBC Model read: " + record);
+        return record;
+      }
+    } finally {
+      if (stmt != null) {
+        stmt.close();
+      }
+    }
+    
+    return null;
+  }
+  
+  public static void writeRecord(Connection connection, Record record) throws SQLException
+  {
+    PreparedStatement stmt1 = null, stmt2 = null;
+    try {
+      // Try to update the database.
+      
+      String updateString = 
+        "UPDATE records " +
+        "SET name = ? " +
+        ", userid = ? " +
+        ", password = ? " +
+        "WHERE email = ? ";
+      
+      stmt1 = connection.prepareStatement(updateString);
+      stmt1.setString(1, record.getName());
+      stmt1.setString(2, record.getUserId());
+      stmt1.setString(3, record.getPassword());
+      stmt1.setString(4, record.getEmail());
+      
+      System.out.println("Running UPDATE statement: " + updateString);
+
+      int count = stmt1.executeUpdate();
+          
+      if (count == 0) {
+        
+        String insertString = 
+          "INSERT INTO records (" +
+          "  email" +
+          ", name" +
+          ", userid" +
+          ", password" +
+          ") VALUES (" + 
+          " ? " + 
+          ", ? " + 
+          ", ? " + 
+          ", ? ";
+        
+        stmt2 = connection.prepareStatement(insertString);
+        stmt2.setString(1, record.getEmail());
+        stmt2.setString(2, record.getName());
+        stmt2.setString(3, record.getUserId());
+        stmt2.setString(4, record.getPassword());
+        
+        System.out.println("Running INSERT statement: " + insertString);
+        
+        stmt2.executeUpdate();
+      }
+    } finally {
+      if (stmt1 != null) {
+        stmt1.close();
+      }
+      if (stmt2 != null) {
+        stmt2.close();
+      }
+    }
+  }
+
+  // Convert single row result set to record.
+  public static Record readRecord(ResultSet rs) throws SQLException
+  {
+    Record record = new BeanRecord(rs.getString("email"), rs.getString("name"),
+        rs.getString("userId"), rs.getString("password"));
+    
+    return record;
+  }
+
+  public static void prepareTables(Connection connection) throws SQLException
+  {
+    boolean hasTable = false;
+
+    ResultSet rs = connection.getMetaData().getTables(null, null, null,
+        new String[] { "TABLE" });
+    while (rs.next()) {
+      if ("records".equalsIgnoreCase(rs.getString("TABLE_NAME"))) {
+        System.out.println("Found table \"records\".");
+        hasTable = true;
+        break;
+      }
+    }
+    if (!hasTable) {
+      Statement s = null;
+      try {
+        s = connection.createStatement();
+        s.execute("CREATE TABLE records (email VARCHAR(50), name VARCHAR(50), password VARCHAR(50), userid VARCHAR(50))");
+      } finally {
+        s.close();
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+package com.webagesolutions.i18n;
+
+import java.util.Locale;
+
+public class Formats
+{
+  public static void main(String[] args)
+  {
+    Locale def = Locale.getDefault();
+    Locale fr = new Locale("fr", "FR");
+    Locale de = new Locale("de", "DE");
+    Locale sv = new Locale("sv", "SE");
+    Locale fi = new Locale("fi", "FI");
+    Locale[] locales = {fr, de,sv, fi};
+  }
+}

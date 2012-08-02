@@ -1,0 +1,15 @@
+package com.webagesolutions.records.jdbc;
+
+import java.sql.SQLException;
+
+public class StoredProcedures
+{
+  public static String LOGIN = "CREATE PROCEDURE login(IN userId VARCHAR(50), IN password VARCHAR(50), OUT authenticated INTEGER) PARAMETER STYLE JAVA LANGUAGE JAVA EXTERNAL NAME 'com.acme.records.jdbc.StoredProcedures.login'";
+
+  public static void login(String userId, String password, int[] authenticated) throws SQLException
+  {
+    Connection connection = DriverManager.getConnection("jdbc:default:connection");
+
+  }
+
+}

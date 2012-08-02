@@ -1,0 +1,7 @@
+package com.webagesolutions.records.jdbc;
+
+public class StoredProcedures
+{
+  public static String login;
+  
+}

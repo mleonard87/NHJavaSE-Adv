@@ -14,11 +14,11 @@ public class ModelJdbc implements Model
   public ModelJdbc(Connection connection)
   {
     this.connection = connection;
-    try {
-      ModelJdbcDax.prepareTables(connection);
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
+//    try {
+//      ModelJdbcDax.prepareTables(connection);
+//    } catch (SQLException e) {
+//      throw new RuntimeException(e);
+//    }
   }
 
   protected void finalize() throws Throwable

@@ -1,0 +1,7 @@
+package com.webagesolutions.records.jdbc;
+
+public class StoredProcedures
+{
+  public static String LOGIN = "CREATE PROCEDURE login(IN userId VARCHAR(50), IN password VARCHAR(50), OUT authenticated INTEGER)";
+  
+}

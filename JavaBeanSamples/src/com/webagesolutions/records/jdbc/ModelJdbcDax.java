@@ -1,11 +1,16 @@
 package com.webagesolutions.records.jdbc;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
+
+import javax.sql.PooledConnection;
+
+import org.apache.derby.jdbc.ClientConnectionPoolDataSource40;
 
 import com.webagesolutions.records.BeanRecord;
 import com.webagesolutions.records.Record;
@@ -14,13 +19,33 @@ public class ModelJdbcDax
 {
   public static Connection getConnection() throws SQLException
   {
-    Connection connection = DriverManager
-        .getConnection("jdbc:derby://localhost:1527/c:/records;create=true");
+//    Connection connection = DriverManager
+//        .getConnection("jdbc:derby://localhost:1527/c:/records;create=true");
+    Connection connection = getClientConnectionPoolDataSource40().getConnection();
     System.out
         .println("Created connection: " + connection.getClass().getName());
     return connection;
   }
 
+  static ClientConnectionPoolDataSource40 getClientConnectionPoolDataSource40()
+  {
+    ClientConnectionPoolDataSource40 dataSource = new ClientConnectionPoolDataSource40();
+    System.out.println("dataSource" + dataSource.getClass().getName());
+    dataSource.setMaxStatements(20);
+    dataSource.setDatabaseName("c:/records");
+    dataSource.setCreateDatabase("create");
+    dataSource.setServerName("localhost");
+    dataSource.setPortNumber(1527);
+    return dataSource;
+  }
+  
+  public static PooledConnection getPooledConnection() throws SQLException
+  {
+    PooledConnection pooledConnection = getClientConnectionPoolDataSource40().getPooledConnection();
+    System.out.println("pooledConnection: " + pooledConnection.getClass().getName());
+    return pooledConnection;
+  }
+  
   public static Record readRecord(Connection connection, String email)
       throws SQLException
   {
@@ -78,7 +103,7 @@ public class ModelJdbcDax
           " ? " + 
           ", ? " + 
           ", ? " + 
-          ", ? ";
+          ", ? )";
         
         stmt2 = connection.prepareStatement(insertString);
         stmt2.setString(1, record.getEmail());
@@ -126,10 +151,33 @@ public class ModelJdbcDax
       Statement s = null;
       try {
         s = connection.createStatement();
+        System.out.println("Creating table...");
         s.execute("CREATE TABLE records (email VARCHAR(50), name VARCHAR(50), password VARCHAR(50), userid VARCHAR(50))");
+        System.out.println("Creating stored procedure...");
+        s.execute(StoredProcedures.LOGIN);
       } finally {
         s.close();
       }
     }
+  }
+  
+  public static boolean login(Connection connection, String userId, String password) throws SQLException
+  {
+    CallableStatement cs = null;
+    boolean authenticated = false;
+    try {
+      cs = connection.prepareCall("call login(?, ?, ?)");
+      cs.setString(1, userId);
+      cs.setString(2, password);
+      cs.registerOutParameter(3, Types.INTEGER);
+      cs.execute();
+      int dbAuth = cs.getInt(3);
+      authenticated = (dbAuth == 1) ? true : false;
+    } finally {
+      if (cs != null) {
+        cs.close();
+      }
+    }
+    return authenticated;
   }
 }

@@ -1,0 +1,12 @@
+package com.webagesolutions.records.jdbc;
+
+public class StoredProcedures
+{
+  public static String LOGIN = "CREATE PROCEDURE login(IN userId VARCHAR(50), IN password VARCHAR(50), OUT authenticated INTEGER) PARAMETER STYLE JAVA LANGUAGE JAVA EXTERNAL NAME 'com.acme.records.jdbc.StoredProcedures.login'";
+
+  public static void loging(String userId, String password, int[] authenticated)
+  {
+
+  }
+
+}
