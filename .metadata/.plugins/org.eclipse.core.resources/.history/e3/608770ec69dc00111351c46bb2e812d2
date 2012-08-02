@@ -1,0 +1,36 @@
+package com.webagesolutions.threads.deadlock;
+
+import java.util.Random;
+
+public class Philosopher implements Runnable
+{
+  private String name;
+  private ChopStick chopStickLeft, chopStickRight;
+  private int i; // Number of times theyve eaten.
+  private Random random;
+  
+  
+  
+  public Philosopher(String name, ChopStick chopStickLeft,
+      ChopStick chopStickRight)
+  {
+    super();
+    this.name = name;
+    this.chopStickLeft = chopStickLeft;
+    this.chopStickRight = chopStickRight;
+    random = new random();
+  }
+
+  @Override
+  public void run()
+  {
+    
+  }
+  
+  private void eat()
+  {
+    System.out.println(this.name + " eats bite " + ++i + " ...");
+    Thread.sleep(millis)
+  }
+
+}

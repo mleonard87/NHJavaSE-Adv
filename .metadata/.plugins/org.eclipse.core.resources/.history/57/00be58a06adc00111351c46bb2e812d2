@@ -1,0 +1,11 @@
+package com.webagesolutions.threads.deadlock;
+
+public class Driver
+{
+  public static void main(String[] args)
+  {
+    int n = 5;
+    ChopStick chopStickLeft = new ChopStick("chopstick"+1);
+    ChopStick chopStickRight = null;
+  }
+}

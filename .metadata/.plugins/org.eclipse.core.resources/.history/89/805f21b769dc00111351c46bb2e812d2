@@ -1,0 +1,18 @@
+package com.webagesolutions.threads.deadlock;
+
+public class Philosopher implements Runnable
+{
+  private String name;
+  
+  @Override
+  public void run()
+  {
+    
+  }
+  
+  private void eat()
+  {
+    System.out.println(this.name + " ");
+  }
+
+}

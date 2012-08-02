@@ -1,0 +1,22 @@
+package com.webagesolutions.threads.deadlock;
+
+import java.awt.List;
+
+public class Driver
+{
+  public static void main(String[] args)
+  {
+    int n = 5;
+    List philosophers = new ArrayList<Philosopher>();
+    ChopStick chopStickLeft = new ChopStick("chopstick"+1);
+    ChopStick chopStickRight = null;
+    ChopStick chopStickFirst = chopStickLeft;
+    
+    for (int i = 1; i < n+1; i++) {
+      chopStickRight = (i == n) ? chopStickFirst : new ChopStick("chopstick"+(i+1));      
+      Philosopher p = new Philosopher("Philosopher" + i, chopStickLeft, chopStickRight);
+      philosophers.add(p);
+      chopStickLeft = chopStickRight;
+    }
+  }
+}
