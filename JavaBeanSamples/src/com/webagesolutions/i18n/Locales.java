@@ -1,6 +1,5 @@
 package com.webagesolutions.i18n;
 
-import java.util.Iterator;
 import java.util.Locale;
 
 public class Locales

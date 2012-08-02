@@ -144,3 +144,23 @@ Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.
 !MESSAGE Help documentation could not be indexed completely.
 !SUBENTRY 1 org.eclipse.help.base 4 4 2012-08-02 10:50:49.061
 !MESSAGE Help document /org.eclipse.mylyn.help.ui/doc/notices.html cannot be opened.
+
+!ENTRY org.eclipse.jdt.launching 4 120 2012-08-02 16:01:48.122
+!MESSAGE Cannot connect to VM
+!STACK 0
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(Unknown Source)
+	at java.net.ServerSocket.bind(Unknown Source)
+	at java.net.ServerSocket.<init>(Unknown Source)
+	at java.net.ServerSocket.<init>(Unknown Source)
+	at org.eclipse.jdi.internal.connect.SocketTransportService.startListening(SocketTransportService.java:277)
+	at org.eclipse.jdi.internal.connect.SocketTransportImpl.startListening(SocketTransportImpl.java:47)
+	at org.eclipse.jdi.internal.connect.SocketListeningConnectorImpl.startListening(SocketListeningConnectorImpl.java:115)
+	at org.eclipse.jdt.internal.launching.StandardVMDebugger.run(StandardVMDebugger.java:246)
+	at org.eclipse.jdt.launching.JavaLaunchDelegate.launch(JavaLaunchDelegate.java:101)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:853)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:702)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:924)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1128)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)

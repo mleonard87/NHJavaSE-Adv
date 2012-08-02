@@ -10,6 +10,7 @@ import com.webagesolutions.records.jdbc.ModelJdbcPooled;
 
 public class AppBatch
 {
+  @SuppressWarnings("static-access")
   public static void main(String[] args)
   {
     Record r1 = new BeanRecord("dude@acme.com", "Ludwig van Beethoven", "dude", "haydn");

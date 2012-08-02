@@ -1,0 +1,11 @@
+package com.webagesolutions.threads.synch;
+
+public class Producer
+{
+  private Stack stack;
+  
+  public Producer()
+  {
+    stack = new Stack();
+  }
+}

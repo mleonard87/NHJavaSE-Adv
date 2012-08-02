@@ -1,0 +1,19 @@
+package com.webagesolutions.threads.synch;
+
+public class Producer
+{
+  private Stack stack;
+  private static int counter;
+  private int num;
+  
+  public Producer(Stack stack)
+  {
+    this.stack = stack;
+    counter++;
+  }
+  
+  public String getName()
+  {
+    return "Producer " + this.num; 
+  }
+}

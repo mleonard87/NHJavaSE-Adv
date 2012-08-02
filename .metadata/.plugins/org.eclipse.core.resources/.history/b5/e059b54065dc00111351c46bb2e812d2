@@ -1,0 +1,6 @@
+package com.webagesolutions.threads.synch;
+
+public class Producer
+{
+
+}

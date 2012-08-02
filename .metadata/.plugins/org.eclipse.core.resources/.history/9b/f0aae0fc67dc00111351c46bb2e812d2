@@ -1,0 +1,20 @@
+package com.webagesolutions.threads.synch;
+
+public class Stack
+{
+  private int top = 0;
+  private int size = 100;
+  private char[] buffer = new char[size];
+
+  public synchronized void push(char c)
+  {
+    buffer[top] = c;
+    top++;
+  }
+  
+  public synchronized char pop()
+  {
+    top--;
+    return buffer[top];
+  }
+}
