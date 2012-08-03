@@ -5,8 +5,6 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
-import sun.net.InetAddressCachePolicy;
-
 public class TimeClient
 {
   public static void main(String[] args) throws IOException

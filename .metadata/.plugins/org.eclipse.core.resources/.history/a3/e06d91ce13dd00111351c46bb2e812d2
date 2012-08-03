@@ -1,0 +1,11 @@
+package com.webagesolutions.reflection;
+
+import com.webagesolutions.records.BeanRecord;
+
+public class ReflectTest
+{
+  public static void main(String[] args)
+  {
+    BeanRecord r = new BeanRecord();
+  }
+}

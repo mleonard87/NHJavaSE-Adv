@@ -1,0 +1,64 @@
+package com.webagesolutions.reflection;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+
+import com.webagesolutions.records.BeanRecord;
+
+public class ReflectTest
+{
+  public static void main(String[] args)
+  {
+//    BeanRecord r = new BeanRecord();
+//    Class<?> clazz = r.getClass();
+    Class<?> clazz = BeanRecord.class;
+    
+    System.out.println("\nClass");
+    int cm = clazz.getModifiers();
+    System.out.println(cm + clazz.getName());
+    
+    System.out.println("\nConstructors");
+    Constructor<?>[] constructors = clazz.getConstructors();
+    for (Constructor<?> constructor : constructors) {
+      System.out.println(constructor.getName() + " --" + constructor);
+    }
+   
+    System.out.println("\nFields");
+    Field[] fields = clazz.getFields();
+    for (Field field : fields) {
+      System.out.println(field.getName() + " --" + field);
+    }
+    
+    System.out.println("\nMethods");
+    Method[] methods = clazz.getMethods();
+    for (Method method : methods) {
+      System.out.println(method.getName() + " --" + method);
+    }
+  }
+  
+  public static String modifiersToString(int m)
+  {
+    String s = "";
+    if (Modifier.isAbstract(m)) {
+      s += "abstract ";
+    }
+    if (Modifier.isPrivate(m)) {
+      s += "private ";
+    } 
+    if (Modifier.isPublic(m)) {
+      s += "public ";
+    } 
+    if (Modifier.isProtected(m)) {
+      s += "protected ";
+    } 
+    if (Modifier.isStatic(m)) {
+      s += "static ";
+    } 
+    if (Modifier.isNative(m)) {
+      s += "native ";
+    } 
+    return s;
+  }
+}
