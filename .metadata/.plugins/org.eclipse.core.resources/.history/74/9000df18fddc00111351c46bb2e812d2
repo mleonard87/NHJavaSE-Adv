@@ -1,0 +1,19 @@
+package com.webagesolutions.sox;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+public class SimpleInetAddress
+{
+  public static void main(String[] args)
+  {
+    try {
+      System.out.println("localhost: " + InetAddress.getLocalHost());
+      InetAddress addr = InetAddress.getByAddress("google.com");
+      System.out.println("host: " + addr.getHostName());
+      System.out.println("ip: " + addr);
+    } catch (UnknownHostException e) {
+      System.out.println(e.getMessage());
+    }
+  }
+}

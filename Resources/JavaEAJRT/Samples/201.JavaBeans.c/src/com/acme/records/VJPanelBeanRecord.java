@@ -1,0 +1,75 @@
+package com.acme.records;
+
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.beans.BeanInfo;
+import java.beans.IntrospectionException;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.InvocationTargetException;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.BadLocationException;
+
+public class VJPanelBeanRecord extends JPanel {
+	private static final long serialVersionUID = 1L;
+	private BeanRecord model;
+
+	public VJPanelBeanRecord() {
+		this.setLayout(new GridBagLayout());
+	}
+
+	public VJPanelBeanRecord(BeanRecord model) {
+		this();
+		setModel(model);
+	}
+
+	public BeanRecord getModel() {
+		return model;
+	}
+
+	public void setModel(BeanRecord model) {
+		try {
+			this.model = model;
+			GridBagConstraints c = new GridBagConstraints(0, 0, 1, 1, 0, 0,
+					GridBagConstraints.EAST, 10, new Insets(4, 4, 4, 4), 10, 10);
+			BeanInfo beanInfo = Introspector.getBeanInfo(model.getClass());
+			for (PropertyDescriptor d : beanInfo.getPropertyDescriptors()) {
+				if (d.getPropertyType() == String.class) {
+					try {
+						c.gridx = 0;
+						String value = (String) d.getReadMethod().invoke(model,
+								(Object[]) null);
+						JTextField t = new JTextField(20);
+						String labelValue = d.getName() + ": ";
+						this.add(new JLabel(labelValue), c);
+						c.gridx = 1;
+						this.add(t, c);
+						((AbstractDocument) t.getDocument()).replace(0, t
+								.getDocument().getLength(), value, null);
+						c.gridy++;
+					} catch (IllegalArgumentException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IllegalAccessException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (InvocationTargetException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (BadLocationException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		} catch (IntrospectionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

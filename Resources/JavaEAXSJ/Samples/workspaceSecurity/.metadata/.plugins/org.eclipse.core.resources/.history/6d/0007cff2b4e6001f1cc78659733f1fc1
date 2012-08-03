@@ -1,0 +1,67 @@
+package com.mycom.digest;
+
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+public class MDExample {
+	private MessageDigest curAlgorithm;
+	public MDExample(){
+		super();
+		// get the filename
+		String filename = "c:\\LabFiles\\clipboard.txt";
+		
+		//set the algorithm
+		try {
+			curAlgorithm = MessageDigest.getInstance("SHA-1"); 
+					
+		}catch (NoSuchAlgorithmException e){
+			System.out.println(e);
+		}
+		
+		//load the file
+		FileInputStream in = null;
+		ByteArrayOutputStream buffer = null;
+		try {
+			in = new FileInputStream(filename);
+			buffer = new ByteArrayOutputStream();
+			int tmp;
+			while((tmp=in.read())!= -1){
+				buffer.write(tmp);
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Can't find file.");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Error reading file.");
+		}
+		try{
+			in.close();
+		}catch (IOException e) {
+			System.out.println("Can't close file.");
+		}
+		
+		//compute the digest
+		curAlgorithm.reset();
+		curAlgorithm.update(buffer.toByteArray());
+		byte[] hash = curAlgorithm.digest();
+		
+		for(int i=0;i<hash.length; i++){
+			System.out.println(Integer.toString(hash[i]));
+		}
+	}
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		MDExample localMD = new MDExample();
+		System.out.println(localMD);
+
+	}
+
+}

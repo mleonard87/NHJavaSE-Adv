@@ -1,0 +1,26 @@
+package com.webage.domain;
+
+public class Money implements Comparable<Money> {
+	int dollars;
+	int cents;
+	String currencySymbol;
+	
+	public Money(int dollars, int cents, String currencySymbol){
+		this.dollars = dollars;
+		this.cents = cents;
+		this.currencySymbol= currencySymbol;
+		
+	}
+	
+	public int compareTo(Money other){
+		return 0;
+	}
+	
+	public boolean equals(Object other){
+		return false;
+	}
+	public String toString(){
+		return currencySymbol + " " + dollars + "." + cents;
+	}
+
+}

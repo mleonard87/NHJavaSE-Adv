@@ -1,0 +1,92 @@
+package com.mycom.users;
+
+import java.io.IOException;
+import java.util.Map;
+
+import javax.security.auth.Subject;
+import javax.security.auth.callback.Callback;
+import javax.security.auth.callback.CallbackHandler;
+import javax.security.auth.callback.NameCallback;
+import javax.security.auth.callback.PasswordCallback;
+import javax.security.auth.callback.UnsupportedCallbackException;
+import javax.security.auth.login.FailedLoginException;
+import javax.security.auth.login.LoginException;
+import javax.security.auth.spi.LoginModule;
+
+import com.mycom.users.InMemoryUserStore;
+
+public class UserLoginModule implements LoginModule {
+	private Subject subject=null;
+	private CallbackHandler callbackHandler=null;
+	private InMemoryUserStore userStore;
+	private boolean succeeded=false;
+	private UserPrincipal principal=null;
+	private String name=null;
+	
+	public boolean abort() throws LoginException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean commit() throws LoginException {
+		if (succeeded == false) {
+		    return false;
+		} else {
+		    // add a Principal (authenticated identity)
+		    // to the Subject
+
+		    // assume the user we authenticated is the SamplePrincipal
+		    principal = new UserPrincipal(name);
+		    if (!subject.getPrincipals().contains(principal))
+			subject.getPrincipals().add(principal);
+		    return true;
+		}
+	}
+
+	public void initialize(Subject subject, CallbackHandler callbackHandler, 
+			Map<String, ?> sharedState, Map<String, ?> options) {
+		this.subject=subject;
+		this.callbackHandler=callbackHandler;
+		this.sharedState=sharedState;
+		this.options=options;
+		this.userStore=new InMemoryUserStore();
+		UserStoreUtils.populate(userStore);
+	}
+
+	public boolean login() throws LoginException {
+		// Get a user name and password.
+		Callback[] callbacks=new Callback[] {
+			new NameCallback("Email:"),
+			new PasswordCallback("Password", false)
+		};
+		// Perform the callbacks
+		try {
+			callbackHandler.handle(callbacks);
+		} catch (IOException e) {
+			return false;
+		} catch (UnsupportedCallbackException e) {
+			return false;
+		}
+		// Authenticate against our user store.
+		// Which user is it?
+		String userid=((NameCallback) callbacks[0])
+			.getName();
+		User desiredUser=userStore.getUser(userid);
+		String password=new String( ((PasswordCallback) callbacks[1]).getPassword());
+		succeeded=desiredUser.getPassword().equals(password);
+		if (succeeded) {
+			this.name=userid;
+		} else {
+			throw new FailedLoginException("Bad password.");
+		}
+		return succeeded;
+	}
+
+	public boolean logout() throws LoginException {
+		subject.getPrincipals().remove(principal);
+		name = null;
+		principal = null;
+		return true;
+	}
+	
+}

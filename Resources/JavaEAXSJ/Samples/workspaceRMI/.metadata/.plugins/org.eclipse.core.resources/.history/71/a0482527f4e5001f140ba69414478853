@@ -1,0 +1,22 @@
+package com.mycom.sax;
+
+import java.io.File;
+
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+public class SAXNodeCount {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+SAXNodeCount saxCount = new SAXNodeCount();
+String filename = args[0];
+SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
+parser.parse(new File(filename), saxCount.new DocHandler());
+
+	}
+
+}

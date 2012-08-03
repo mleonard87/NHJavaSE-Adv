@@ -1,0 +1,9 @@
+package com.webagesolutions.sox;
+
+public class SimpleBrowser
+{
+  public static void main(String[] args)
+  {
+    URL target = new URL("http://www.google.com.au");
+  }
+}

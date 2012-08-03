@@ -1,0 +1,27 @@
+package com.mycom.digest;
+
+import java.security.MessageDigest;
+
+public class MDExample {
+	public MessageDigest curAlgorithm;
+	
+	public MDExample(){
+		super();
+		
+		//get the filename
+		String fileName = "c:\\LabFiles\\clipping.txt";
+		
+		//set the algorithm
+		
+		curAlgorithm = MessageDigest.
+	}
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

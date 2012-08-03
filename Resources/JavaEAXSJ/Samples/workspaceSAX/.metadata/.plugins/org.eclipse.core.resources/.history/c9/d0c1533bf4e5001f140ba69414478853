@@ -1,0 +1,40 @@
+package com.mycom.sax;
+
+import java.io.File;
+
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.xml.sax.helpers.DefaultHandler;
+
+public class SAXNodeCount {
+
+	private class DocHandler extends DefaultHandler {
+int elementCount;
+		public DocHandler() {
+			// TODO Auto-generated constructor stub
+			super();
+		}
+		public void startElement(String uri, String localName, String qName, Attributes att){
+			elementCount++;
+		}
+		public void endDocument(){
+			System.out.printf("Document contained %d elements. \n", elementCount);
+			
+		}
+
+	}
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+SAXNodeCount saxCount = new SAXNodeCount();
+String filename = args[0];
+SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
+parser.parse(new File(filename), saxCount.new DocHandler());
+
+	}
+
+}

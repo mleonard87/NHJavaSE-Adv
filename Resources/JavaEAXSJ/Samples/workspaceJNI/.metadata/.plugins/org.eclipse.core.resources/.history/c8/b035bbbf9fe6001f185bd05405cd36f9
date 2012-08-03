@@ -1,0 +1,54 @@
+package com.mycom.rmi;
+
+import java.net.MalformedURLException;
+import java.rmi.AlreadyBoundException;
+import java.rmi.Naming;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
+import com.mycom.users.InMemoryUserStore;
+import com.mycom.users.RemoteUserStore;
+import com.mycom.users.User;
+import com.mycom.users.UserAddException;
+import com.mycom.users.UserStore;
+
+public class RemoteUserStoreService extends UnicastRemoteObject implements
+		RemoteUserStore {
+
+	UserStore userStore = new InMemoryUserStore();
+
+	protected RemoteUserStoreService() throws RemoteException {
+		super();
+	}
+
+	public static void main(String args[]) {
+		try {
+			RemoteUserStoreService service = new RemoteUserStoreService();
+			Naming.bind("UserStore", service);
+			System.out.println("UserStore service has been exported.");
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (AlreadyBoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void putUser(User aUser, String verifyPassword)
+			throws UserAddException, RemoteException {
+		userStore.putUser(aUser, verifyPassword);
+	}
+
+	@Override
+	public Iterable<User> listAllUsers() throws RemoteException {
+		return userStore.listAllUsers();
+	}
+
+	@Override
+	public User getUser(String email) throws RemoteException {
+		return userStore.getUser(email);
+	}
+
+}

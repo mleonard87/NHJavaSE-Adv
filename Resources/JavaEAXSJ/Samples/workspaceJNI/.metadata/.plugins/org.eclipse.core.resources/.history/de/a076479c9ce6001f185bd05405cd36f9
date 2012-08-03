@@ -1,0 +1,21 @@
+package com.mycom.rmi;
+
+import java.rmi.RemoteException;
+
+public class RemoteUserStoreUtils {
+
+	public static void populate(RemoteUserStore store) throws RemoteException {
+		try {
+			store.putUser(new Administrator("Jim", "Waldo", "waldoj@sun.com", 
+					"waldoj", "note"), "note");
+			store.putUser(new RegularUser("Ann", "Wollrath", "wollratha@sun.com", 
+					"wollratha", "on"), "on");
+			store.putUser(new RegularUser("Samuel", "Kendall", "kendalls@sun.com", 
+					"kendalls", "distributed"), "distributed");
+			store.putUser(new RegularUser("Geoff", "Wyant", "wyantg@sun.com", 
+					"wyantg", "computing"), "computing");
+		} catch (UserAddException e) {
+			e.printStackTrace();
+		} 
+	}
+}

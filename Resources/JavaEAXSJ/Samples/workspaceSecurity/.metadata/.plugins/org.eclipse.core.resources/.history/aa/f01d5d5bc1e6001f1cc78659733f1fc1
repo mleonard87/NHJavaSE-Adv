@@ -1,0 +1,42 @@
+package com.mycom.digest;
+
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+public class MDExample {
+	public MessageDigest curAlgorithm;
+	
+	public MDExample(){
+		super();
+		
+		//get the filename
+		String fileName = "c:\\LabFiles\\clipping.txt";
+		
+		//set the algorithm
+		
+		try {
+			curAlgorithm = MessageDigest.getInstance("SHA-1");
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//load the file
+		FileInputStream in =null;
+		ByteArrayOutputStream beffer = null;
+		
+		
+		
+	}
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

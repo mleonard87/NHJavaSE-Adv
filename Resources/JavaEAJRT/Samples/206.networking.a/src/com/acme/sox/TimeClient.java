@@ -1,0 +1,23 @@
+package com.acme.sox;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+
+public class TimeClient {
+	public static void main(String[] args) throws IOException {
+		byte[] message = new byte[256];
+		InetAddress address = InetAddress.getByName("localhost");
+		System.out.println("sending packet to " + address);
+		DatagramPacket packet = new DatagramPacket(message, message.length,
+				address, 10003);
+		DatagramSocket socket = new DatagramSocket();
+		socket.send(packet);
+		packet = new DatagramPacket(message, message.length);
+		socket.receive(packet);
+		String time = new String(packet.getData());
+		System.out.println("received packet from " + address + ": " + time);
+		socket.close();
+	}
+}

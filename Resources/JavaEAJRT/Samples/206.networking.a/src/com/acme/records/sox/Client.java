@@ -1,0 +1,44 @@
+package com.acme.records.sox;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.Scanner;
+
+public class Client {
+	public static void main(String[] args) {
+		Socket socket = null;
+		try {
+			socket = new Socket("localhost", 10001);
+			Scanner console = new Scanner(System.in);
+			Scanner input = new Scanner(socket.getInputStream());
+			PrintWriter output = new PrintWriter(socket.getOutputStream());
+			String command = "";
+			while (true) {
+				String response = input.nextLine();
+				System.out.println("server: " + response);
+				if ("bye".equals(command)) {
+					break;
+				}
+				command = console.nextLine();
+				System.out.println("client: " + command);
+				output.println(command);
+				output.flush();
+			}
+		} catch (UnknownHostException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			if (socket != null) {
+				try {
+					socket.close();
+				} catch (IOException e) {
+					System.out.println(e.getMessage());
+				}
+			}
+		}
+	}
+}

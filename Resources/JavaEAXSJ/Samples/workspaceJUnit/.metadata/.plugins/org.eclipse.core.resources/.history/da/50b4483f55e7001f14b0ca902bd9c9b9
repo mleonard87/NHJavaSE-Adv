@@ -1,0 +1,3 @@
+Login {
+	com.mycom.users.UserLoginModule required;
+};

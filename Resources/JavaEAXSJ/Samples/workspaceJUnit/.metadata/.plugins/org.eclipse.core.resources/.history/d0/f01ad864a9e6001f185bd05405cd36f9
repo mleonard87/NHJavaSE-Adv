@@ -1,0 +1,38 @@
+package com.mycom.rmi;
+
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
+import com.mycom.users.InMemoryUserStore;
+import com.mycom.users.RemoteUserStore;
+import com.mycom.users.User;
+import com.mycom.users.UserAddException;
+import com.mycom.users.UserStore;
+
+public class RemoteUserStoreService extends UnicastRemoteObject implements
+		RemoteUserStore {
+UserStore userStore = new InMemoryUserStore();
+protected RemoteUserStoreService() throws RemoteException{
+	super();
+}
+	@Override
+	public void putUser(User aUser, String verifyPassword)
+			throws UserAddException, RemoteException {
+		// TODO Auto-generated method stub
+		userStore.putUser(aUser, verifyPassword);
+
+	}
+
+	@Override
+	public Iterable<User> listAllUsers() throws RemoteException {
+		// TODO Auto-generated method stub
+		return userStore.listAllUsers();
+	}
+
+	@Override
+	public User getUser(String email) throws RemoteException {
+		// TODO Auto-generated method stub
+		return userStore.getUser(email);
+	}
+
+}
