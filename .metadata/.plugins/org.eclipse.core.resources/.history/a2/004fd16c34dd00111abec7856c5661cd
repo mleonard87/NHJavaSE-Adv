@@ -1,0 +1,24 @@
+package com.webagesolutions.reflection;
+
+import java.util.Scanner;
+
+public class MethodExecutor
+{
+  public static void main(String[] args)
+  {
+    Scanner in = new Scanner(System.in);
+    System.out.println("Enter a fully qualified class name: ");
+    String className = in.nextLine();
+
+    Class<?> clazz = null;
+    try {
+      clazz = Class.forName(className);
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+      System.exit(1);
+    }
+    
+    Object instance = null;
+    instance = clazz.newInstance();
+  }
+}
