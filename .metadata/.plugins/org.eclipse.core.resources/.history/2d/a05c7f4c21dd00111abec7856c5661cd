@@ -1,0 +1,67 @@
+package com.webagesolutions.util;
+
+import java.beans.BeanInfo;
+import java.beans.EventSetDescriptor;
+import java.beans.PropertyDescriptor;
+
+public class Introspector
+{
+  public static Object getProperty(Object target, String propertyName)
+  {
+    try {
+      BeanInfo beanInfo = java.beans.Introspector
+          .getBeanInfo(target.getClass());
+      for (PropertyDescriptor d : beanInfo.getPropertyDescriptors()) {
+        if (propertyName.equals(d.getName())) {
+          System.out.println("introspector invoking "
+              + d.getReadMethod().getName());
+          return d.getReadMethod().invoke(target);
+        }
+      }
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+    return null;
+    // throw new RuntimeException("no " + propertyName + " porperty found on "
+    // + target.getClass().getName());
+  }
+
+  public static Object setProperty(Object target, String propertyName,
+      Object value)
+  {
+    try {
+      BeanInfo beanInfo = java.beans.Introspector
+          .getBeanInfo(target.getClass());
+      for (PropertyDescriptor d : beanInfo.getPropertyDescriptors()) {
+        if (propertyName.equals(d.getName())) {
+          System.out.println("introspector invoking "
+              + d.getWriteMethod().getName());
+          return d.getWriteMethod().invoke(target, value);
+        }
+      }
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+    return null;
+    // throw new RuntimeException("no " + propertyName + " porperty found on "
+    // + target.getClass().getName());
+  }
+
+  public static void addListener(Object target, Object listener)
+  {
+    try {
+      BeanInfo beanInfo = java.beans.Introspector
+          .getBeanInfo(target.getClass());
+      for (EventSetDescriptor d : beanInfo.getEventSetDescriptors()) {
+        Class<?> c = d.getListenerType();
+        if (c.isAssignableFrom(listener.getClass())) {
+          System.out.println("introspector registering for " + d.getName());
+          d.getAddListenerMethod().invoke(target, listener);
+        }
+      }
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+    throw new RuntimeException("no appropriate registration method found on " + target.getClass().getName());
+  }
+}

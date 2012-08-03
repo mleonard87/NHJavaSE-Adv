@@ -1,0 +1,179 @@
+package com.webagesolutions.util;
+
+import java.awt.HeadlessException;
+import java.beans.BeanInfo;
+import java.beans.EventSetDescriptor;
+import java.beans.PropertyDescriptor;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class Introspector
+{
+  // Lazily commented out all ending exceptions to return null and fail silently
+  // to make coding this example easier....
+
+  public static Object getProperty(Object target, String propertyName)
+  {
+    try {
+      BeanInfo beanInfo = java.beans.Introspector
+          .getBeanInfo(target.getClass());
+      for (PropertyDescriptor d : beanInfo.getPropertyDescriptors()) {
+        if (propertyName.equals(d.getName())) {
+          System.out.println("introspector invoking "
+              + d.getReadMethod().getName());
+          return d.getReadMethod().invoke(target);
+        }
+      }
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+    System.out.println("no " + propertyName + " prperty found on "
+        + target.getClass().getName());
+    return null;
+    // throw new RuntimeException("no " + propertyName + " porperty found on "
+    // + target.getClass().getName());
+  }
+
+  public static Object setProperty(Object target, String propertyName,
+      Object value)
+  {
+    try {
+      BeanInfo beanInfo = java.beans.Introspector
+          .getBeanInfo(target.getClass());
+      for (PropertyDescriptor d : beanInfo.getPropertyDescriptors()) {
+        if (propertyName.equals(d.getName())) {
+          System.out.println("introspector invoking "
+              + d.getWriteMethod().getName());
+          return d.getWriteMethod().invoke(target, value);
+        }
+      }
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+    System.out.println("no " + propertyName + " property found on "
+        + target.getClass().getName());
+    return null;
+    // throw new RuntimeException("no " + propertyName + " property found on "
+    // + target.getClass().getName());
+  }
+
+  public static void addListener(Object target, Object listener)
+  {
+    try {
+      BeanInfo beanInfo = java.beans.Introspector
+          .getBeanInfo(target.getClass());
+      for (EventSetDescriptor d : beanInfo.getEventSetDescriptors()) {
+        Class<?> c = d.getListenerType();
+        if (c.isAssignableFrom(listener.getClass())) {
+          System.out.println("introspector registering for " + d.getName());
+          d.getAddListenerMethod().invoke(target, listener);
+        }
+      }
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+    System.out.println("no appropriate registration method found on "
+        + target.getClass().getName());
+    // throw new RuntimeException("no appropriate registration method found on "
+    // + target.getClass().getName());
+  }
+
+  public static void removeListener(Object target, Object listener)
+  {
+    try {
+      BeanInfo beanInfo = java.beans.Introspector
+          .getBeanInfo(target.getClass());
+      for (EventSetDescriptor d : beanInfo.getEventSetDescriptors()) {
+        Class<?> c = d.getListenerType();
+        if (c.isAssignableFrom(listener.getClass())) {
+          System.out.println("introspector deregistering for " + d.getName());
+          d.getRemoveListenerMethod().invoke(target, listener);
+        }
+      }
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+    System.out.println("no appropriate deregistration method found on "
+        + target.getClass().getName());
+    // throw new
+    // RuntimeException("no appropriate deregistration method found on " +
+    // target.getClass().getName());
+  }
+
+  public static void main(String[] args)
+  {
+    // Object r1 = new BeanRecord("dude@acme.com", "Ludwig van Beethoven",
+    // "dude", "haydn");
+    //
+    // JFrame f = new JFrame();
+    // f.setContentPane(new VJPanelBean(r1));
+    // f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    // f.pack();
+    // f.setVisible(true);
+    //
+    // f = new JFrame();
+    // f.setContentPane(new VJPanelBean(r1));
+    // f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    // f.pack();
+    // f.setVisible(true);
+
+    // Object o = new ClientConnectionPoolDataSource40();
+    //
+    // JFrame f = new JFrame();
+    // f.setContentPane(new VJPanelBean(o));
+    // f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    // f.pack();
+    // f.setVisible(true);
+    //
+    // f = new JFrame();
+    // f.setContentPane(new VJPanelBean(o));
+    // f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    // f.pack();
+    // f.setVisible(true);
+
+    try {
+      Object o1 = Class.forName(
+          "org.apache.derby.jdbc.ClientConnectionPoolDataSource40").newInstance();
+      Object o2 = Class.forName("com.webagesolutions.records.BeanRecord")
+          .newInstance();
+      setProperty(o2, "email", "ludwig@acme.com");
+      setProperty(o2, "name", "Ludwig van Beethoven");
+      setProperty(o2, "userId", "dude");
+      setProperty(o2, "password", "haydn");
+
+      Object v1 = Class.forName("com.webagesolutions.records.VJPanelBean")
+          .newInstance();
+      setProperty(v1, "model", o1);
+
+      Object v2 = Class.forName("com.webagesolutions.records.VJPanelBean")
+          .newInstance();
+      setProperty(v2, "model", o2);
+
+      JFrame f = new JFrame();
+      f.setContentPane((JPanel) v1);
+      f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      f.pack();
+      f.setVisible(true);
+
+      f = new JFrame();
+      f.setContentPane((JPanel) v2);
+      f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      f.pack();
+      f.setVisible(true);
+    } catch (HeadlessException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (InstantiationException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (IllegalAccessException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (ClassNotFoundException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+
+  }
+}

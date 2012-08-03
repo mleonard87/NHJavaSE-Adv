@@ -694,3 +694,6 @@ Java Model Exception: Java Model Status [com.webagesolutions.dom [in src [in Jav
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1408)
 !SUBENTRY 1 org.eclipse.jdt.core 4 969 2012-08-03 12:44:02.437
 !MESSAGE com.webagesolutions.dom [in src [in JavaSE]] does not exist
+
+!ENTRY org.eclipse.jst.jsp.core 4 4 2012-08-03 13:54:41.773
+!MESSAGE A workspace crash was detected. The previous session did not exit normally. Not using saved taglib indexes.

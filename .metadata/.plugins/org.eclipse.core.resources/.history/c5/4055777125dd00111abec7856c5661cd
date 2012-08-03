@@ -1,0 +1,9 @@
+package com.webagesolutions.util;
+
+public class Reflection
+{
+  public static Object invoke(Class<?> targetClass, String methodName, Object... args)
+  {
+    
+  }
+}

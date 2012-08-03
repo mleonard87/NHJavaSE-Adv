@@ -1,0 +1,13 @@
+package com.webagesolutions.util;
+
+import java.lang.reflect.Method;
+
+import com.sun.swing.internal.plaf.metal.resources.metal;
+
+public class Reflection
+{
+  public static Object invoke(Class<?> targetClass, String methodName, Object... args)
+  {
+    Method m = targetClass.getMethod(methodName, args);
+  }
+}

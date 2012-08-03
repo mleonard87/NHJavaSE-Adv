@@ -1,0 +1,6 @@
+package com.webagesolutions.util;
+
+public class Introspector
+{
+
+}

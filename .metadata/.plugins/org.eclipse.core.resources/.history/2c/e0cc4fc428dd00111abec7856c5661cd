@@ -1,0 +1,48 @@
+package com.webagesolutions.util;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+public class Reflection
+{
+  public static Object invoke(Class<?> targetClass, String methodName,
+      Object... args)
+  {
+    try {
+      Method m = targetClass.getMethod(methodName);
+      return m.invoke(targetClass, args);
+    } catch (Exception e) {
+      throw new RuntimeException("problem invoking " + methodName + " on "
+          + targetClass.getName());
+    }
+  }
+
+  public static Object invoke(String className, String methodName,
+      Object... args)
+  {
+    try {
+      Class<?> c = Class.forName(className);
+      return invoke(c, methodName, args);
+    } catch (Exception e) {
+      throw new RuntimeException("problem finding class " + className);
+    }
+  }
+
+  public static Object construct(Class<?> targetClass, Object... args)
+  {
+    try {
+      Constructor<?> c = targetClass.getConstructor();
+      return c.newInstance(args);
+    } catch (Exception e) {
+      throw new RuntimeException("problem constructing class " + targetClass.getName());
+    }
+  }
+  
+  public static void main(String[] args)
+  {
+    System.out.println(invoke(java.lang.System.class, "getProperties"));
+    System.out.println(invoke("java.lang.System", "getProperties"));
+    construct(BreanRecord.class);
+  }
+}

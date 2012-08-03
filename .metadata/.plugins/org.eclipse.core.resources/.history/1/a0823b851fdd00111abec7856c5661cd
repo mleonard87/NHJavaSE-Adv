@@ -1,0 +1,18 @@
+package com.webagesolutions.util;
+
+import java.beans.BeanInfo;
+import java.beans.PropertyDescriptor;
+
+public class Introspector
+{
+  public static Object getProperty(Object target, String propertyName)
+  {
+    BeanInfo beanInfo = java.beans.Introspector.getBeanInfo(target.getClass());
+    for (PropertyDescriptor d : beanInfo.getPropertyDescriptors()) {
+      if (propertyName.equals(d.getName()) {
+        System.out.println("introspector invoking " + d.getReadMethod().getName());
+        return d.getReadMethod().invoke(target);
+      }
+    }
+  }
+}

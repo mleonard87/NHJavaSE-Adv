@@ -1,0 +1,35 @@
+package com.webagesolutions.util;
+
+import java.lang.reflect.Method;
+
+public class Reflection
+{
+  public static Object invoke(Class<?> targetClass, String methodName,
+      Object... args)
+  {
+    try {
+      Method m = targetClass.getMethod(methodName);
+      return m.invoke(targetClass, args);
+    } catch (Exception e) {
+      throw new RuntimeException("problem invoking " + methodName + " on "
+          + targetClass.getName());
+    }
+  }
+  
+  public static Object invoke(String className, String methodName, Object... args)
+  {
+    try {
+      Class<?> c = Class.forName(className);
+      return invoke(c, methodName, args);
+    } catch (Exception e) {
+      throw new RuntimeException("problem invoking " + methodName + " on "
+          + c.getName());
+    }
+  }
+  
+  public static void main(String[] args)
+  {
+    System.out.println(invoke(System.class, "getProperties"));
+    System.out.println(invoke("System.class", "getProperties"));
+  }
+}

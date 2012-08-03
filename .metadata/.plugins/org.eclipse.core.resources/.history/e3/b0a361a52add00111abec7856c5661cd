@@ -1,0 +1,84 @@
+package com.webagesolutions.util;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+
+import com.webagesolutions.records.BeanRecord;
+
+public class Reflection
+{
+  public static Object invoke(Object target, String methodName, Object... args)
+  {
+    Class<?> targetClass = target.getClass();
+    try {
+      if (target instanceof Class) {
+        targetClass = (Class<?>) target;
+      }
+      Method m = targetClass.getMethod(methodName);
+      return m.invoke(target, args);
+    } catch (Exception e) {
+      throw new RuntimeException("problem invoking " + methodName + " on "
+          + targetClass.getName(), e);
+    }
+  }
+
+  public static Object invoke(Class<?> targetClass, String methodName,
+      Object... args)
+  {
+    try {
+      Method m = targetClass.getMethod(methodName);
+      return m.invoke(targetClass, args);
+    } catch (Exception e) {
+      throw new RuntimeException("problem invoking " + methodName + " on "
+          + targetClass.getName(), e);
+    }
+  }
+
+  public static Object invoke(String className, String methodName,
+      Object... args)
+  {
+    try {
+      Class<?> c = Class.forName(className);
+      return invoke(c, methodName, args);
+    } catch (Exception e) {
+      throw new RuntimeException("problem finding class " + className, e);
+    }
+  }
+
+  public static Object construct(Class<?> targetClass, Object... args)
+  {
+    Class<?>[] types = new Class<?>[];
+    try {
+      Constructor<?> c = targetClass.getConstructor();
+      return c.newInstance(args);
+    } catch (Exception e) {
+      throw new RuntimeException("problem constructing class "
+          + targetClass.getName(), e);
+    }
+  }
+
+  public static Object construct(String className, Object... args)
+  {
+    try {
+      Class<?> c = Class.forName(className);
+      return construct(c, args);
+    } catch (Exception e) {
+      throw new RuntimeException("problem finding class " + className, e);
+    }
+  }
+
+  public static void main(String[] args)
+  {
+    System.out.println(invoke(java.lang.System.class, "getProperties"));
+    System.out.println(invoke("java.lang.System", "getProperties"));
+    System.out.println(construct(BeanRecord.class));
+    System.out.println(construct("com.webagesolutions.records.BeanRecord"));
+
+    Object r = construct("com.webagesolutions.records.BeanRecord");
+    Object r1 = construct("com.webagesolutions.records.BeanRecord",
+        "ludwig@acme.com", "Ludwig van Beethoven", "dude", "haydn");
+    System.out.println(invoke(r, "getEmail"));
+
+    // invoke(r, "setEmail", "dude@acme.com");
+  }
+}

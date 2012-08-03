@@ -1,0 +1,34 @@
+package com.webagesolutions.util;
+
+import java.beans.BeanInfo;
+import java.beans.IntrospectionException;
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.InvocationTargetException;
+
+public class Introspector
+{
+  public static Object getProperty(Object target, String propertyName)
+  {
+    try {
+      BeanInfo beanInfo = java.beans.Introspector.getBeanInfo(target.getClass());
+      for (PropertyDescriptor d : beanInfo.getPropertyDescriptors()) {
+        if (propertyName.equals(d.getName())) {
+          System.out.println("introspector invoking " + d.getReadMethod().getName());
+          return d.getReadMethod().invoke(target);
+        }
+      }
+    } catch (IllegalArgumentException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (IntrospectionException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (IllegalAccessException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (InvocationTargetException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+  }
+}

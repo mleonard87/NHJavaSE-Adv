@@ -1,0 +1,19 @@
+package com.webagesolutions.util;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+import com.sun.swing.internal.plaf.metal.resources.metal;
+
+public class Reflection
+{
+  public static Object invoke(Class<?> targetClass, String methodName, Object... args)
+  {
+    try {
+      Method m = targetClass.getMethod(methodName);
+      return m.invoke(targetClass, args);
+    } catch (exception e) {
+      e.printStackTrace();
+    }
+  }
+}
