@@ -7,7 +7,6 @@ import com.webagesolutions.records.BeanRecord;
 import com.webagesolutions.records.Record;
 import com.webagesolutions.records.VJFrameApp;
 import com.webagesolutions.records.VMJFrameApp;
-import com.webagesolutions.records.jdbc.ModelJdbcManaged;
 
 public class AppSox
 {

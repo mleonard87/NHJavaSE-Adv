@@ -50,6 +50,7 @@ public class Philosopher implements Runnable
     }
   }
 
+  @SuppressWarnings("unused")
   private void think()
   {
     System.out.println(this.name + " thinks ...");
