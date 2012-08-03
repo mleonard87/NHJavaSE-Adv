@@ -1,0 +1,11 @@
+package com.webagesolutions.sox;
+
+import java.net.DatagramSocket;
+
+public class TimeServer
+{
+  public static void main(String[] args)
+  {
+    DatagramSocket socket = new DatagramSocket();
+  }
+}
