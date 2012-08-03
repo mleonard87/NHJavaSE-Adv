@@ -1,0 +1,6 @@
+package com.webagesolutions.synch;
+
+public class SharedBean
+{
+
+}

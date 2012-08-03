@@ -1,0 +1,12 @@
+package com.webagesolutions.synch;
+
+public class Incrementor implements Runnable
+{
+  SharedBean sharedBean;
+  
+  @Override
+  public void run()
+  {
+    
+  }
+}

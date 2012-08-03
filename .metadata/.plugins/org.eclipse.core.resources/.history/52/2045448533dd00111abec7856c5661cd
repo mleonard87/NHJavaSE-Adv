@@ -1,0 +1,16 @@
+package com.webagesolutions.synch;
+
+public class SharedBean
+{
+  private int value;
+
+  public int getValue()
+  {
+    return value;
+  }
+
+  public void setValue(int value)
+  {
+    this.value = value;
+  }
+}
