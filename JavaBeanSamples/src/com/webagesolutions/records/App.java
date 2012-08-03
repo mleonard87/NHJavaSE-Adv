@@ -33,7 +33,7 @@ public class App
 //    }
         
     
-    ModelJdbcManaged model = new ModelJdbcManaged();
+    ModelJdbcManaged model = ModelJdbcManaged.getInstance();
     new VJFrameApp().setModel(new VMJFrameApp(model, r1));
     new VJFrameApp().setModel(new VMJFrameApp(model, r2));
     new VJFrameApp().setModel(new VMJFrameApp(model, r3));

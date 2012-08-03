@@ -1,0 +1,36 @@
+package com.webagesolutions.records.sox;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Scanner;
+
+public class Server
+{
+  public static void main(String[] args)
+  {
+    try {
+      // Connect
+      ServerSocket serverSocket = new ServerSocket(10001);
+      System.out.println(Thread.currentThread().getName()
+          + " awaiting connections...");
+      Socket socket = serverSocket.accept();
+      System.out.println(Thread.currentThread().getName() + " connection from "
+          + socket.getRemoteSocketAddress());
+      // Dialog
+      PrintWriter output = new PrintWriter(socket.getOutputStream());
+      output.println("Welcome to acme records: <email>|bye");
+      output.println("Usage: <email>|bye");
+      output.flush();
+      Scanner input = new Scanner(socket.getInputStream());
+      String command;
+      do {
+        command = input.nextLine();
+      } while (!"bye".equals(command));
+        
+    } catch (IOException e) {
+      System.out.println(e.getMessage());
+    }
+  }
+}

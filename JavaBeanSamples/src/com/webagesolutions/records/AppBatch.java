@@ -91,7 +91,7 @@ public class AppBatch
     System.out.println("Model type: JDBC Managed.");
     ModelJdbcManaged modelm = null;
     //model = new ModelInMemory();
-    modelm = new ModelJdbcManaged();
+    modelm = ModelJdbcManaged.getInstance();
     modelm.putRecord(r1);
     modelm.putRecord(r2);
     modelm.putRecord(r3);

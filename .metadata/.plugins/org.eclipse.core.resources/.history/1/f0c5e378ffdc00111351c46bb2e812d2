@@ -1,0 +1,17 @@
+package com.webagesolutions.records.sox;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+
+public class Server
+{
+  public static void main(String[] args)
+  {
+    try {
+      ServerSocket serverSocket = new ServerSocket(10001);
+      Socket socket = serverSocket.accept();
+    } catch (IOException e) {
+      System.out.println(e.getMessage());
+    }
+  }
+}

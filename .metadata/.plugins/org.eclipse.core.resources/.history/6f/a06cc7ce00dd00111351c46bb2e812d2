@@ -1,0 +1,51 @@
+package com.webagesolutions.records.sox;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Scanner;
+
+import com.webagesolutions.records.Record;
+import com.webagesolutions.records.jdbc.ModelJdbcManaged;
+
+public class Server
+{
+  public static void main(String[] args)
+  {
+    try {
+      // Connect
+      ServerSocket serverSocket = new ServerSocket(10001);
+      System.out.println(Thread.currentThread().getName()
+          + " awaiting connections...");
+      Socket socket = serverSocket.accept();
+      System.out.println(Thread.currentThread().getName() + " connection from "
+          + socket.getRemoteSocketAddress());
+      // Dialog
+      PrintWriter output = new PrintWriter(socket.getOutputStream());
+      output.println("Welcome to acme records: <email>|bye");
+      output.println("Usage: <email>|bye");
+      output.flush();
+      Scanner input = new Scanner(socket.getInputStream());
+      String command;
+      do {
+        command = input.nextLine();
+        System.out.println(Thread.currentThread().getName() + " received " + command);
+        String response = "Received '" + command + "'. ";
+        if ("bye".equals(command)) {
+          response += "Thanks for using acme records, bye!";
+        } else {
+          Record record = ModelJdbcManaged.getInstance().getRecord(command);
+          if (record == null) {
+            response += "No record found for: " + command + ".";
+          } else {
+            response += "Found: " + record;
+          }
+        }
+      } while (!"bye".equals(command));
+        
+    } catch (IOException e) {
+      System.out.println(e.getMessage());
+    }
+  }
+}

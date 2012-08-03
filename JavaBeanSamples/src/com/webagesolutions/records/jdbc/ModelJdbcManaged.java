@@ -12,10 +12,19 @@ import com.webagesolutions.records.Record;
 public class ModelJdbcManaged implements Model
 {
   private DataSource dataSource;
+  private static ModelJdbcManaged instance;
 
-  public ModelJdbcManaged()
+  private ModelJdbcManaged()
   {
     this.dataSource = ModelJdbcDaxDataSource.getInstance("/jdbc/acme");
+  }
+  
+  public static ModelJdbcManaged getInstance()
+  {
+    if (instance == null) {
+      instance = new ModelJdbcManaged();
+    }
+    return instance;
   }
 
   @Override
