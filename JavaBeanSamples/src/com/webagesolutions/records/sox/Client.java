@@ -10,8 +10,9 @@ public class Client
 {
   public static void main(String[] args)
   {
+    Socket socket = null;
     try {
-      Socket socket = new Socket("localhost", 10001);
+      socket = new Socket("localhost", 10001);
       Scanner console = new Scanner(System.in);
       Scanner input = new Scanner(socket.getInputStream());
       PrintWriter output = new PrintWriter(socket.getOutputStream());
@@ -31,6 +32,16 @@ public class Client
       System.out.println(e.getMessage());
     } catch (IOException e) {
       System.out.println(e.getMessage());
+    } finally {
+
+      if (socket != null) {
+        try {
+          socket.close();
+        } catch (IOException e) {
+          System.out.println(e.getMessage());
+        }
+      }
+
     }
   }
 }

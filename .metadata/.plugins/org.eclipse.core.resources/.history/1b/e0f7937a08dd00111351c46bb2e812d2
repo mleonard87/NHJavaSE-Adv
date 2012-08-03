@@ -1,0 +1,52 @@
+package com.webagesolutions.records.sox;
+
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+
+import com.webagesolutions.records.Model;
+import com.webagesolutions.records.Record;
+
+public class ModelSox implements Model
+{
+  private Socket socket;
+  private ObjectInputStream input;
+  private ObjectOutputStream output;
+  
+  public ModelSox(String serverName, int portNumber)
+  {
+    socket = new Socket(serverName, portNumber);
+    input = new ObjectInputStream(socket.getInputStream());
+    output = new ObjectOutputStream(socket.getOutputStream());
+    System.out.println("ModelSox connected, the server said: " input.readObject());
+  }
+
+  @Override
+  public void putRecord(Record beanRecord)
+  {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public Record getRecord(String email)
+  {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public Iterable<Record> allRecords()
+  {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public void close()
+  {
+    // TODO Auto-generated method stub
+
+  }
+
+}

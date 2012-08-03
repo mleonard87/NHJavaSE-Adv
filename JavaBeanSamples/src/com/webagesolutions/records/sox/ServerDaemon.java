@@ -1,0 +1,101 @@
+package com.webagesolutions.records.sox;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import com.webagesolutions.records.Record;
+import com.webagesolutions.records.jdbc.ModelJdbcManaged;
+
+public class ServerDaemon implements Runnable
+{
+  private Socket socket;
+  
+  public ServerDaemon(Socket socket)
+  {
+    super();
+    this.socket = socket;
+  }
+  
+  @Override
+  public void run()
+  {
+    try {
+      // Dialog
+      PrintWriter output = new PrintWriter(socket.getOutputStream());
+      output.println("Welcome to acme records: Usage: <email>|bye");
+      output.flush();
+      Scanner input = new Scanner(socket.getInputStream());
+      String command;
+      do {
+        command = input.nextLine();
+        System.out.println(Thread.currentThread().getName() + " received "
+            + command);
+        String response = "Received '" + command + "'. ";
+        if ("bye".equals(command)) {
+          response += "Thanks for using acme records, bye!";
+        } else {
+          Record record = ModelJdbcManaged.getInstance().getRecord(command);
+          if (record == null) {
+            response += "No record found for: " + command + ".";
+          } else {
+            response += "Found: " + record;
+          }
+        }
+        output.println(response);
+        output.flush();
+      } while (!"bye".equals(command));
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    } finally {
+      if (socket != null) {
+        try {
+          socket.close();
+          System.out.println(Thread.currentThread().getName()
+              + " closing socket...");
+        } catch (IOException e) {
+          System.out.println(e.getMessage());
+        }
+      }
+    }
+  }
+
+  public static void main(String[] args)
+  {
+    ServerSocket serverSocket = null;
+    ExecutorService executorService = Executors.newCachedThreadPool();
+    try {
+      // Connect
+      serverSocket = new ServerSocket(10001);
+      System.out.println(Thread.currentThread().getName()
+          + " awaiting connections on port " + serverSocket.getLocalPort());
+      
+      while(true) {
+        // Dispatching the daemon threads
+        Socket socket = serverSocket.accept();
+        System.out.println(Thread.currentThread().getName() + " connection from "
+            + socket.getRemoteSocketAddress());
+        executorService.execute(new ServerDaemon(socket));
+      }
+      
+    } catch (IOException e) {
+      System.out.println(e.getMessage());
+    } finally {
+      executorService.shutdown();
+      if (serverSocket != null) {
+        try {
+          serverSocket.close();
+          System.out.println(Thread.currentThread().getName()
+              + " closing server socket...");
+        } catch (IOException e) {
+          System.out.println(e.getMessage());
+        }
+      }
+
+    }
+  }
+}
